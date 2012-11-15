@@ -62,8 +62,6 @@
 
 
 
-
-
 .note-bubble {
     background-color: #F2F2F2;
     border-radius: 5px;
@@ -80,3 +78,18 @@
     margin: 0px;
     padding: 10px;
 }
+
+.thumbnails {
+	height: 100px;
+	overflow: hidden;
+
+}
+
+.contentFrameThumbnailContainer {
+	position: relative;
+	left: -155px;
+}
+
+.contentFrameThumbnailReveal {
+}
+
