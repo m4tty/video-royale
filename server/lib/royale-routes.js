@@ -26,11 +26,15 @@ exports.findById = function(req, res) {
     db.collection('videos', function(err, collection) {
     	console.log('videoid-', videoid);
 
-    	(function(db, videoid) {
+    	//(function (db, collection, videoid) {
     		console.log('VIDEOID', videoid);
 	        collection.findOne({'_id':new BSON.ObjectID(videoid)}, function(err, item) {
+	        	var royaleResult = {};
+	        	royaleResult.video = item;
+	        	//TODO: get rid of these closures... 
+	        	(function (db, collection, videoid) {	
 				async.parallel([
-				    function(callback, videoid){
+				    	function(callback){
 				    	console.log('videoid1', videoid);
 						 db.collection('contentFrames', function(err, collection) {
 						 	console.log('videoid2', videoid);
@@ -39,44 +43,48 @@ exports.findById = function(req, res) {
 									// 	return err;
 									// }
 									console.log('contentFrames', item);
-									callback(null, item);;
+									royaleResult.contentFrames = item;
+									callback(null, {'contentFrames': item });;
 
 						        });
 						    });
 				    },
-				    function(callback, videoid){
+			     	function(callback){
 	 					db.collection('notes', function(err, collection) {
 						        collection.find({'videoId':videoid}).toArray(function(err, item) {
 									// if (err) {
 									// 	return err;
 									// }
 									console.log('notes', item);
-									callback(null, item);
+									royaleResult.notes = item;
+									callback(null, {'notes': item });
 
 						        });
 						    });
 				    },
-				    function(callback, videoid){
+				    function(callback){
 	 						db.collection('comments', function(err, collection) {
 						        collection.find({'videoId':videoid}).toArray(function(err, item) {
 									// if (err) {
 									// 	return err;
 									// }
 									console.log('comments', item);
-									callback(null, item);
+									royaleResult.comments = item;
+									callback(null, {'comments': item });
 
 						        });
 						    });
 				    }
+
 				], function(err, data) {
-					res.send(data);
+					
+					res.send(royaleResult);
 				});
-			})(db, videoid);
-
-            
-        });
-
-
+				
+				})(db, collection, videoid);
+				
+			});
+        //})(db, collection, videoid);
     });
 };
 
