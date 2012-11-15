@@ -13,7 +13,7 @@ db.open(function(err, db) {
         db.collection('comments', {safe:true}, function(err, collection) {
             if (err) {
                 console.log("The 'comments' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+                //populateDB();
             }
         });
     }
@@ -106,7 +106,7 @@ exports.deleteComment = function(req, res) {
 // You'd typically not find this code in a real-life app, since the database would already exist.
 var populateDB = function() {
 	process.nextTick(function() {
-		
+
 	db.collection('videos', function(err, collection) {
 
         collection.find().toArray(function(err, items) {

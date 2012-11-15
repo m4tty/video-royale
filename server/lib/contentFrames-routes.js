@@ -13,7 +13,7 @@ db.open(function(err, db) {
         db.collection('contentFrames', {safe:true}, function(err, collection) {
             if (err) {
                 console.log("The 'contentFrames' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+                //populateDB();
             }
         });
     }

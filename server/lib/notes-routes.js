@@ -13,7 +13,7 @@ db.open(function(err, db) {
         db.collection('notes', {safe:true}, function(err, collection) {
             if (err) {
                 console.log("The 'notes' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+                //populateDB();
             }
         });
     }
