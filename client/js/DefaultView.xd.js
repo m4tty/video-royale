@@ -28,7 +28,7 @@ return {depends: [["provide", "videoroyale.DefaultView"],
 ["provide", "dojo.cache"],
 ["provide", "dijit._Templated"],
 ["provide", "videoroyale.DefaultView"],
-["i18n._preloadLocalizations", "coursehome.nls.DefaultView", ["ROOT","ar","ca","cs","da","de","de-de","el","en","en-gb","en-us","es","es-es","fi","fi-fi","fr","fr-fr","he","he-il","hu","it","it-it","ja","ja-jp","ko","ko-kr","nb","nl","nl-nl","pl","pt","pt-br","pt-pt","ru","sk","sl","sv","th","tr","xx","zh","zh-cn","zh-tw"]]],
+["i18n._preloadLocalizations", "videoroyale.nls.DefaultView", ["ROOT","ar","ca","cs","da","de","de-de","el","en","en-gb","en-us","es","es-es","fi","fi-fi","fr","fr-fr","he","he-il","hu","it","it-it","ja","ja-jp","ko","ko-kr","nb","nl","nl-nl","pl","pt","pt-br","pt-pt","ru","sk","sl","sv","th","tr","xx","zh","zh-cn","zh-tw"]]],
 defineResource: function(dojo, dijit, dojox){/*
 	Copyright (c) 2004-2011, The Dojo Foundation All Rights Reserved.
 	Available via Academic Free License >= 2.1 OR the modified BSD license.
@@ -7026,7 +7026,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		// this.courseId
 		console.log("constructor!!");
 		// override
-		this.templateString = dojo.cache("coursehome.ui", "templates/DefaultView.html", "<div class=\"\">\r\n\t<iframe id=\"videoRoyale\" src=\"\" />\r\n</div>\r\n");
+		this.templateString = dojo.cache("videoroyale.ui", "templates/DefaultView.html", "<div class=\"\">\r\n\t<iframe id=\"videoRoyale\" src=\"\" />\r\n</div>\r\n");
 		this.doLayout = false;
 	},
 
