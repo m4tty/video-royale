@@ -110,74 +110,77 @@ var populateDB = function() {
     db.collection('videos', function(err, collection) {
         collection.insert(videos, {safe:true}, function(err, result) {
 
+        	process.nextTick(function() {
+
 
 			collection.find().toArray(function(err, items) {
 	        	console.log('err', err);
 
-	        	for (var i = items.length - 1; i >= 0; i--) {
-	        		var contentFrames = [
-				    {
-				    	"videoId": items[i]._id,
-				        "startTime": 3000,
-				    	"contentHtml": "blah blah hooray"
-				    },
-				    {
-				    	"videoId": items[i]._id,
-				        "startTime": 3000,
-				    	"contentHtml": "blah blah hooray 2"
-	   				 }];
+		        	for (var i = items.length - 1; i >= 0; i--) {
+		        		var contentFrames = [
+					    {
+					    	"videoId": items[i]._id,
+					        "startTime": 3000,
+					    	"contentHtml": "blah blah hooray"
+					    },
+					    {
+					    	"videoId": items[i]._id,
+					        "startTime": 3000,
+					    	"contentHtml": "blah blah hooray 2"
+		   				 }];
 
-				    db.collection('contentFrames', function(err, collection) {
-				        collection.insert(contentFrames, {safe:true}, function(err, result) {});
-				    });
-	        	};
+					    db.collection('contentFrames', function(err, collection) {
+					        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+					    });
 
 
-        	for (var i = items.length - 1; i >= 0; i--) {
-			    var notes = [
-			    {
-			        "videoId": items[i]._id,
-			        "startTime": 3000,
-			    	"noteText": "blah blah hooray",
-			    	"userId": 12345
-			    },
-			    {
-			        "videoId": items[i]._id,
-			        "startTime": 3000,
-			    	"noteText": "blah blah hooray",
-			    	"userId": 12345
-			    }];
+				    var notes = [
+					    {
+					        "videoId": items[i]._id,
+					        "startTime": 3000,
+					    	"noteText": "blah blah hooray",
+					    	"userId": 12345
+					    },
+					    {
+					        "videoId": items[i]._id,
+					        "startTime": 3000,
+					    	"noteText": "blah blah hooray",
+					    	"userId": 12345
+					    }];
 
-			    db.collection('notes', function(err, collection) {
-			        collection.insert(notes, {safe:true}, function(err, result) {});
-			    });
+					    db.collection('notes', function(err, collection) {
+					        collection.insert(notes, {safe:true}, function(err, result) {});
+					    });
 
-	        };
+					    var comments = [
+					    {
+					        "videoId": items[i]._id,
+					        "startTime": 1000,
+					    	"commentText": "blah blah hooray",
+					    	"userId":12345,
+					    	"userFullName": "Nikola Tesla"
+					    },
+					    {
+					        "videoId": items[i]._id,
+					        "startTime": 3000,
+					    	"commentText": "blah blah hooray",
+					    	"userId":12345,
+					    	"userFullName": "Nikola Tesla"
+					    }];
 
-        	for (var i = items.length - 1; i >= 0; i--) {
-			    var comments = [
-			    {
-			        "videoId": items[i]._id,
-			        "startTime": 1000,
-			    	"commentText": "blah blah hooray",
-			    	"userId":12345,
-			    	"userFullName": "Nikola Tesla"
-			    },
-			    {
-			        "videoId": items[i]._id,
-			        "startTime": 3000,
-			    	"commentText": "blah blah hooray",
-			    	"userId":12345,
-			    	"userFullName": "Nikola Tesla"
-			    }];
+					    db.collection('comments', function(err, collection) {
+					        collection.insert(comments, {safe:true}, function(err, result) {});
+					    });
 
-			    db.collection('comments', function(err, collection) {
-			        collection.insert(comments, {safe:true}, function(err, result) {});
-			    });
-        	};
 
-        });
-    });
+		        	};
+
+		        });
+		    });
+
+		});
+
+
 	});
 };
 
