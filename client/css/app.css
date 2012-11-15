@@ -1,0 +1,56 @@
+.comments-container {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.bubble{
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px #B2B2B2;
+    margin: 0px;
+    padding: 10px;
+    margin-left: 65px;
+}
+
+.bubbletext {
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.bubblesig {
+	float:right;
+	margin-top:-10px;
+}
+
+.bubble::before {
+    background-color: #F2F2F2;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    content: "\00a0";
+    display: block;
+    height: 10px;
+    left: -15px;
+    position: relative;
+    top: 5px;
+    -webkit-transform: rotate( 45deg );
+    width:  10px;
+}
+
+.avatar {
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+.comment {
+	padding: 5px;
+}
+
+.comments {
+	width: 100%;
+}
+
+.centered-div {
+	text-align: center;
+	padding: 5px;
+}
