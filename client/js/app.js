@@ -52,7 +52,7 @@ var App = function() {
 							contentFrameMgr.show(index);
 						}
 					});
-				})(i);
+				}(i));
 			}
 
 			//Load the Content

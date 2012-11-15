@@ -119,6 +119,15 @@
 		</div>
 
 	</body>
+
+	<script type="text/template" id="configTemplate">
+		<div id="<%= note.id %>" class="note">
+			<div class="note-bubble">
+				<div class="notetext"><a class="label" href="javascript:void(0);"><%= note.startTime %></a> <%= note.text %></div>
+			</div>
+		</div>
+	</script>
+
 	<script data-main="js/main" src="libs/jquery/jquery-min.js"></script>
 	<script data-main="js/main" src="libs/underscore/underscore-min.js"></script>
 	<script data-main="js/main" src="libs/bootstrap/bootstrap-min.js"></script>
@@ -130,7 +139,11 @@
 	<script data-main="js/main" src="js/contentFrameMgr.js"></script>
 
 	<script>
-		var app = new App();
-		app.initialize("50a535dc77f1448025000002");
+		
+
+		$(function(){
+			var app = new App();
+			app.initialize("50a535dc77f1448025000002");
+      	});
 	</script>
 </html>
