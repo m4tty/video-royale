@@ -120,10 +120,12 @@
 
 	</body>
 
-	<script type="text/template" id="configTemplate">
-		<div id="<%= note.id %>" class="note">
-			<div class="note-bubble">
-				<div class="notetext"><a class="label" href="javascript:void(0);"><%= note.startTime %></a> <%= note.text %></div>
+	<script type="text/template" id="commentsTemplate">
+		<div id="<%= comment.id %>" class="comment">
+			<img src="<%= comment.avatarUrl %>" class="img-rounded avatar"/>
+			<div class="bubble">
+				<div class="bubbletext"><%= comment.text %></div>
+				<div id="<%= comment.authorId %>" class="bubblesig">- <%= comment.authorName %></div>
 			</div>
 		</div>
 	</script>
