@@ -13,7 +13,7 @@ db.open(function(err, db) {
         db.collection('comments', {safe:true}, function(err, collection) {
             if (err) {
                 console.log("The 'comments' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+                //populateDB();
             }
         });
     }
@@ -52,6 +52,9 @@ exports.findAll = function(req, res) {
 
 exports.addComment = function(req, res) {
     var comment = req.body;
+
+    console.log('comment', comment);
+
     console.log('Adding comment: ' + JSON.stringify(comment));
     db.collection('comments', function(err, collection) {
         collection.insert(comment, {safe:true}, function(err, result) {
@@ -102,25 +105,38 @@ exports.deleteComment = function(req, res) {
 // Populate database with sample data -- Only used once: the first time the application is started.
 // You'd typically not find this code in a real-life app, since the database would already exist.
 var populateDB = function() {
+	process.nextTick(function() {
 
-    var comments = [
-    {
-        videoId: "50a535dc77f1448025000002",
-        startTime: 1000,
-    	commentText: 'blah blah hooray',
-    	userId:12345,
-    	userFullName: 'Nikola Tesla'
-    },
-    {
-        videoId: "50a535dc77f1448025000002",
-        startTime: 3000,
-    	commentText: 'blah blah hooray',
-    	userId:12345,
-    	userFullName: 'Nikola Tesla'
-    }];
+	db.collection('videos', function(err, collection) {
 
-    db.collection('comments', function(err, collection) {
-        collection.insert(comments, {safe:true}, function(err, result) {});
+        collection.find().toArray(function(err, items) {
+        	console.log('err', err);
+
+        	for (var i = items.length - 1; i >= 0; i--) {
+			    var comments = [
+			    {
+			        "videoId": items[i]._id,
+			        "startTime": 1000,
+			    	"commentText": "blah blah hooray",
+			    	"userId":12345,
+			    	"userFullName": "Nikola Tesla"
+			    },
+			    {
+			        "videoId": items[i]._id,
+			        "startTime": 3000,
+			    	"commentText": "blah blah hooray",
+			    	"userId":12345,
+			    	"userFullName": "Nikola Tesla"
+			    }];
+
+			    db.collection('comments', function(err, collection) {
+			        collection.insert(comments, {safe:true}, function(err, result) {});
+			    });
+        	};
+
+        });
     });
+});
+
 
 };

@@ -6,6 +6,14 @@ var commentsRoutes = require('./lib/comments-routes');
 var royaleRoutes = require('./lib/royale-routes');
 var app = express();
 
+app.use(express.bodyParser()); 
+app.use(express.methodOverride());
+
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.send(500, 'dadgum!');
+});
+
 app.get('/videos', videosRoutes.findAll);
 app.get('/videos/:videoid',videosRoutes.findById);
 app.post('/videos', videosRoutes.addVideo);
