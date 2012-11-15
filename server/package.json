@@ -1,0 +1,12 @@
+{
+    "name": "video-royale-server",
+    "main": "./server.js",
+    "description": "video-royale-server",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.x",
+        "mongodb": "1.1.10",
+        "async": "0.1.22"
+    }
+}
