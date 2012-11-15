@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title></title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+
+		<style type="text/css">
+			.comments-container {
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				padding: 10px;
+			}
+
+			.bubble{
+			    background-color: #F2F2F2;
+			    border-radius: 5px;
+			    box-shadow: 0px 0px 6px #B2B2B2;
+			    margin: 0px;
+			    padding: 10px;
+			    margin-left: 65px;
+			}
+
+			.bubbletext {
+				margin-top: -10px;
+				margin-bottom: 10px;
+			}
+
+			.bubblesig {
+				float:right;
+				margin-top:-10px;
+			}
+
+			.bubble::before {
+			    background-color: #F2F2F2;
+			    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+			    content: "\00a0";
+			    display: block;
+			    height: 10px;
+			    left: -15px;
+			    position: relative;
+			    top: 5px;
+			    -webkit-transform: rotate( 45deg );
+			    width:  10px;
+			}
+
+			.avatar {
+				height: 50px;
+				width: 50px;
+				float: left;
+			}
+
+			.comment {
+				padding: 5px;
+			}
+
+			.comments {
+				width: 100%;
+			}
+
+			.comment .span2 {
+				text-align: right;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="comments-container" style="width:320px;">
+		    <form>
+			    <div class="input-prepend input-append">
+			    	<span class="add-on">@ 00:12</span>
+			    	<input class="span3" id="prependedInput" type="text" placeholder="Comment...">
+			    	<a class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
+			    </div>
+			</form>
+
+		    <div class="comments">
+			    <div class="comment">
+			    	<img src="http://img1.jurko.net/avatar_14053.jpg" class="img-rounded avatar"/>
+			    	<div class="bubble">
+			    		<div class="bubbletext">Here is some text Here is some text Here is some text Here is some text Here is some text</div>
+			    		<div class="bubblesig">- Nikola Tesla</div>
+			    	</div>
+				</div>
+
+
+				<div class="comment">
+			    	<img src="http://img1.jurko.net/avatar_12535.jpg" class="img-rounded avatar"/>
+			    	<div class="bubble">
+			    		<div class="bubbletext">Here is some more text</div>
+			    		<div class="bubblesig">- Some other dude</div>
+			    	</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</body>
+	<script data-main="js/main" src="js/libs/jquery/jquery-min.js"></script>
+	<script data-main="js/main" src="js/libs/underscore/underscore-min.js"></script>
+	<script data-main="js/main" src="js/libs/bootstrap/bootstrap-min.js"></script>
+</html>
