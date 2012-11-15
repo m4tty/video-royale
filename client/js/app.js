@@ -13,13 +13,13 @@ var App = function() {
 				
 				(function(index) {
 					popcorn.code({
-						start: Math.floor((contentFrame.startTime / 1000),
+						start: Math.floor((contentFrame.startTime / 1000)),
 						end: 1000,
 						onStart: function(options) {
 							contentFrameMgr.show(index);
 						}
 					});
-				}(i);
+				}(i));
 			}
 
 			// play the video right away
