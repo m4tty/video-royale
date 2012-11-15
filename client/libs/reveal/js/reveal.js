@@ -5,13 +5,13 @@
  *
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
-var Reveal = (function(){
+var Reveal = function(divId, slideSelectedCallback){
 
 	'use strict';
 
-	var SLIDES_SELECTOR = '.reveal .slides section',
-		HORIZONTAL_SLIDES_SELECTOR = '.reveal .slides>section',
-		VERTICAL_SLIDES_SELECTOR = '.reveal .slides>section.present>section',
+	var SLIDES_SELECTOR = '#' + divId + ' .slides section',
+		HORIZONTAL_SLIDES_SELECTOR = '#' + divId + ' .slides>section',
+		VERTICAL_SLIDES_SELECTOR = '#' + divId + ' .slides>section.present>section',
 
 		// Configurations defaults, can be overridden at initialization time
 		config = {
@@ -140,7 +140,7 @@ var Reveal = (function(){
 	function setupDOM() {
 		// Cache references to key DOM elements
 		dom.theme = document.querySelector( '#theme' );
-		dom.wrapper = document.querySelector( '.reveal' );
+		dom.wrapper = document.querySelector( '#' + divId );
 
 		// Progress bar
 		if( !dom.wrapper.querySelector( '.progress' ) && config.progress ) {
@@ -176,11 +176,11 @@ var Reveal = (function(){
 		}
 
 		// Cache references to elements
-		dom.progress = document.querySelector( '.reveal .progress' );
-		dom.progressbar = document.querySelector( '.reveal .progress span' );
+		dom.progress = document.querySelector( '#' + divId + ' .progress' );
+		dom.progressbar = document.querySelector( '#' + divId + ' .progress span' );
 
 		if ( config.controls ) {
-			dom.controls = document.querySelector( '.reveal .controls' );
+			dom.controls = document.querySelector( '#' + divId + ' .controls' );
 
 			// There can be multiple instances of controls throughout the page
 			dom.controlsLeft = toArray( document.querySelectorAll( '.navigate-left' ) );
@@ -1040,8 +1040,8 @@ var Reveal = (function(){
 
 			if( element ) {
 				// Find the position of the named slide and navigate to it
-				var indices = Reveal.getIndices( element );
-				slide( indices.h, indices.v );
+//TAS - Removed				var indices = Reveal.getIndices( element );
+//TAS - Removed			slide( indices.h, indices.v );
 			}
 			// If the slide doesn't exist, navigate to the current slide
 			else {
@@ -1196,6 +1196,7 @@ var Reveal = (function(){
 		// Prioritize hiding fragments
 		if( availableRoutes().left && isOverviewActive() || previousFragment() === false ) {
 			slide( indexh - 1 );
+			if(slideSelectedCallback) slideSelectedCallback(indexh);
 		}
 	}
 
@@ -1203,6 +1204,7 @@ var Reveal = (function(){
 		// Prioritize revealing fragments
 		if( availableRoutes().right && isOverviewActive() || nextFragment() === false ) {
 			slide( indexh + 1 );
+			if(slideSelectedCallback) slideSelectedCallback(indexh);
 		}
 	}
 
@@ -1239,6 +1241,7 @@ var Reveal = (function(){
 				if( previousSlide ) {
 					indexv = ( previousSlide.querySelectorAll( 'section' ).length + 1 ) || undefined;
 					indexh --;
+					if(slideSelectedCallback) slideSelectedCallback(indexh);
 					slide();
 				}
 			}
@@ -1316,11 +1319,12 @@ var Reveal = (function(){
 		if( triggered ) {
 			event.preventDefault();
 		}
-		else if ( event.keyCode === 27 && supports3DTransforms ) {
-			toggleOverview();
-
-			event.preventDefault();
-		}
+//TAS - Remove toggling by the escape key
+//		else if ( event.keyCode === 27 && supports3DTransforms ) {
+//			toggleOverview();
+//
+//			event.preventDefault();
+//		}
 
 		// If auto-sliding is enabled we need to cue up
 		// another timeout
@@ -1482,13 +1486,15 @@ var Reveal = (function(){
 		// removed after deactivating the overview.
 		if( isOverviewActive() ) {
 			event.preventDefault();
-
-			deactivateOverview();
+//TAS - Don't let it jump out of overview mode
+//			deactivateOverview();
 
 			var h = parseInt( event.target.getAttribute( 'data-index-h' ), 10 ),
 				v = parseInt( event.target.getAttribute( 'data-index-v' ), 10 );
 
 			slide( h, v );
+
+			if(slideSelectedCallback) slideSelectedCallback(h, v);
 		}
 	}
 
@@ -1555,14 +1561,14 @@ var Reveal = (function(){
 		// Forward event binding to the reveal DOM element
 		addEventListener: function( type, listener, useCapture ) {
 			if( 'addEventListener' in window ) {
-				( dom.wrapper || document.querySelector( '.reveal' ) ).addEventListener( type, listener, useCapture );
+				( dom.wrapper || document.querySelector( '#' + divId ) ).addEventListener( type, listener, useCapture );
 			}
 		},
 		removeEventListener: function( type, listener, useCapture ) {
 			if( 'addEventListener' in window ) {
-				( dom.wrapper || document.querySelector( '.reveal' ) ).removeEventListener( type, listener, useCapture );
+				( dom.wrapper || document.querySelector( '#' + divId ) ).removeEventListener( type, listener, useCapture );
 			}
 		}
 	};
 
-})();
+};

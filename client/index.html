@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap-responsive.css">
 		<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="css/app.css">
-		<link rel="stylesheet" href="libs/reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="libs/reveal/css/reveal.css">
 		<link rel="stylesheet" href="libs/reveal/css/theme/default.css" id="theme">
 
 
@@ -69,15 +69,8 @@
 
 			<div class="row">
 				<div class="contentFrame span7">
-					<div class="reveal">
+					<div class="reveal" id="contentFrameReveal">
 						<div class="slides">
-							<section>Slide 1</section>
-							<section>Slide 2</section>
-							<section>Slide 3</section>
-							<section>Slide 4</section>
-							<section>Slide 5</section>
-							<section>Slide 6</section>
-							<section>Slide 7</section>
 						</div>
 					</div>
 				</div>
@@ -113,13 +106,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="span12 thumbnails">
+					<div class="contentFrameThumbnailContainer">
+						<div class="reveal" id="contentFrameThumbnailReveal">
+							<div class="slides">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-
-
-		
-
-
 
 	</body>
 	<script data-main="js/main" src="libs/jquery/jquery-min.js"></script>
@@ -128,34 +125,11 @@
 	<script data-main="js/main" src="libs/reveal/js/reveal.js"></script>
 	<script data-main="js/main" src="libs/reveal/js/head.min.js"></script>
 
+	<script data-main="js/main" src="js/app.js"></script>
+	<script data-main="js/main" src="js/contentFrameMgr.js"></script>
+
 	<script>
-
-		// Full list of configuration options available here:
-		// https://github.com/hakimel/reveal.js#configuration
-		Reveal.initialize({
-			controls: false,
-			progress: false,
-			history: false,
-			center: false,
-
-			theme: 'beige', // available themes are in /css/theme
-			transition: 'page', // default/cube/page/concave/zoom/linear/none
-
-			// Optional libraries used to extend on reveal.js
-			dependencies: [
-				{ src: 'libs/reveal/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: 'libs/reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: 'libs/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: 'libs/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-				{ src: 'libs/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-				{ src: 'libs/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-			]
-		});
-
-		setTimeout(function() {
-			Reveal.slide(3, 0 );
-		}, 2000);
-
+		var app = new App();
+		app.initialize();
 	</script>
 </html>

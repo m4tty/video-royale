@@ -10,12 +10,10 @@
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
-body {
-  background: white;
-  background-color: white;
-}
 
 .reveal {
+  background: white;
+  background-color: white;
   font-family: "Lato", Times, "Times New Roman", serif;
   font-size: 36px;
   font-weight: 200;
@@ -23,11 +21,7 @@ body {
   color: black;
 }
 
-::selection {
-  color: white;
-  background: rgba(0, 0, 0, 0.99);
-  text-shadow: none;
-}
+
 
 /*********************************************
  * HEADERS
