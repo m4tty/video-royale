@@ -102,22 +102,34 @@ exports.deleteNote = function(req, res) {
 // You'd typically not find this code in a real-life app, since the database would already exist.
 var populateDB = function() {
 
-    var notes = [
-    {
-        videoId: "50a535dc77f1448025000002",
-        startTime: 3000,
-    	noteText: 'blah blah hooray',
-    	userId: 12345
-    },
-    {
-        videoId: "50a535dc77f1448025000002",
-        startTime: 3000,
-    	noteText: 'blah blah hooray',
-    	userId: 12345
-    }];
+	process.nextTick(function() {
+		db.collection('videos', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+        	console.log('err', err);
 
-    db.collection('notes', function(err, collection) {
-        collection.insert(notes, {safe:true}, function(err, result) {});
+        	for (var i = items.length - 1; i >= 0; i--) {
+			    var notes = [
+			    {
+			        "videoId": items[i]._id,
+			        "startTime": 3000,
+			    	"noteText": "blah blah hooray",
+			    	"userId": 12345
+			    },
+			    {
+			        "videoId": items[i]._id,
+			        "startTime": 3000,
+			    	"noteText": "blah blah hooray",
+			    	"userId": 12345
+			    }];
+
+			    db.collection('notes', function(err, collection) {
+			        collection.insert(notes, {safe:true}, function(err, result) {});
+			    });
+        	};
+
+        });
     });
+});
+
 
 };

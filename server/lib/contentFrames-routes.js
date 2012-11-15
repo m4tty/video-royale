@@ -102,21 +102,32 @@ exports.deleteContentFrame = function(req, res) {
 // Populate database with sample data -- Only used once: the first time the application is started.
 // You'd typically not find this code in a real-life app, since the database would already exist.
 var populateDB = function() {
+	process.nextTick(function() {
+	db.collection('videos', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+        	console.log('err', err);
 
-    var contentFrames = [
-    {
-    	videoId: "50a535dc77f1448025000002",
-        startTime: 3000,
-    	contentHtml: 'blah blah hooray'
-    },
-    {
-    	videoId: "50a535dc77f1448025000002",
-        startTime: 3000,
-    	contentHtml: 'blah blah hooray 2'
-    }];
+        	for (var i = items.length - 1; i >= 0; i--) {
+        		var contentFrames = [
+			    {
+			    	"videoId": items[i]._id,
+			        "startTime": 3000,
+			    	"contentHtml": "blah blah hooray"
+			    },
+			    {
+			    	"videoId": items[i]._id,
+			        "startTime": 3000,
+			    	"contentHtml": "blah blah hooray 2"
+   				 }];
 
-    db.collection('contentFrames', function(err, collection) {
-        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+			    db.collection('contentFrames', function(err, collection) {
+			        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+			    });
+        	};
+
+        });
     });
+});
+
 
 };

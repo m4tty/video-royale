@@ -33,6 +33,8 @@ exports.findById = function(req, res) {
 exports.findAll = function(req, res) {
      db.collection('videos', function(err, collection) {
         collection.find().toArray(function(err, items) {
+        	console.log('err', err);
+
             res.send(items);
         });
     });
@@ -40,7 +42,8 @@ exports.findAll = function(req, res) {
 
 exports.addVideo = function(req, res) {
     var video = req.body;
-    console.log('Adding video: ' + JSON.stringify(video));
+
+    //console.log('Adding video: ' + JSON.stringify(video));
     db.collection('videos', function(err, collection) {
         collection.insert(video, {safe:true}, function(err, result) {
             if (err) {
@@ -59,7 +62,7 @@ exports.updateVideo = function(req, res) {
     console.log('Updating video: ' + id);
     console.log(JSON.stringify(video));
     db.collection('videos', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, video, {safe:true}, function(err, result) {
+        collection.update({'_id': new BSON.ObjectID(id)}, video, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating video: ' + err);
                 res.send({'error':'An error has occurred'});
@@ -92,16 +95,16 @@ exports.deleteVideo = function(req, res) {
 var populateDB = function() {
     var videos = [
     {
-    		name: 'test',
-    		duration: 113000,
-    		url: 'http://ec2-174-129-109-6.compute-1.amazonaws.com/videos/blob_full.mp4',
-    		autoStart: false
+    		"name": "test",
+    		"duration": 113000,
+    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+    		"autoStart": false
     },
     {
-    		name: 'test2',
-    		duration: 113000,
-    		url: 'http://ec2-174-129-109-6.compute-1.amazonaws.com/videos/blob_full.mp4',
-    		autoStart: false
+    		"name": 'test2',
+    		"duration": 113000,
+    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+    		"autoStart": false
     }];
 
     db.collection('videos', function(err, collection) {
