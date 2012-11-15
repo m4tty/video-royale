@@ -7021,18 +7021,19 @@ dojo.provide("coursehome.DefaultView");
 
 dojo.declare("coursehome.DefaultView", [dijit.layout.ContentPane, dijit._Templated, dijit._Container], {
 
-	constructor: function() {			
+	constructor: function() {
 		// this.accessToken
 		// this.courseId
-		this.menuItemId = this.menuItemApi.getSelectedPrimaryNavigationMenuItem();
-		console.log(this.menuItemId);
-
+		console.log("constructor!!");
 		// override
 		this.templateString = dojo.cache("coursehome.ui", "templates/DefaultView.html", "<div class=\"\">\r\n\t<iframe id=\"videoRoyale\" src=\"\" />\r\n</div>\r\n");
 		this.doLayout = false;
 	},
 
 	postCreate: function () {
+		this.menuItemId = this.menuItemApi.getSelectedPrimaryNavigationMenuItem();
+		console.log(this.menuItemId);
+
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
 		this.linkedContentUrl = "http://ec2-174-129-109-6.compute-1.amazonaws.com/client/index.html"
 		this.appFrame = dojo.byId("videoRoyale");
@@ -7071,7 +7072,6 @@ dojo.declare("coursehome.DefaultView", [dijit.layout.ContentPane, dijit._Templat
 				courseId: this.courseId,
 				menuItemId: this.menuItemId
 			};
-			console.log("DATA:", data);
 			this.appFrame.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
 		}
 		else {
@@ -7102,19 +7102,10 @@ dojo.declare("coursehome.DefaultView", [dijit.layout.ContentPane, dijit._Templat
 		} else {
 			this.destroyDescendants();
 		}
-		this._removeSubscriptions();
-		this._destroyDataAdapters();
-		this.activityPeopleTabContainer = null;
 
 		this.inherited(arguments);
 	},
-	
-	startup: function() {
-		this.inherited(arguments);
 		
-		//this.activityPeopleTabContainer.resize();
-	},
-	
 	resize: function() {
 		// override resize and do nothing to prevent default resize behavior
 	}
