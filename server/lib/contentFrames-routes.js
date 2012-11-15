@@ -23,7 +23,7 @@ exports.findByVideoId = function(req, res) {
     var id = req.params.videoid;
     console.log('Retrieving contentFrame: ' + id);
     db.collection('contentFrames', function(err, collection) {
-        collection.find({'videoId':id}).toArray(function(err, item) {
+        collection.find({'videoId':new BSON.ObjectID(id)}).toArray(function(err, item) {
 			console.log('err',err);
             res.send(item);
         });

@@ -23,7 +23,7 @@ exports.findByVideoId = function(req, res) {
     var id = req.params.videoid;
     console.log('Retrieving notes: ' + id);
     db.collection('notes', function(err, collection) {
-        collection.find({'videoId':id}).toArray(function(err, item) {
+        collection.find({'videoId':new BSON.ObjectID(id)}).toArray(function(err, item) {
             res.send(item);
         });
     });
