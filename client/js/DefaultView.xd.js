@@ -1,5 +1,5 @@
 dojo._xdResourceLoaded(function(dojo, dijit, dojox){
-return {depends: [["provide", "coursehome.DefaultView"],
+return {depends: [["provide", "videoroyale.DefaultView"],
 ["provide", "dijit._base.manager"],
 ["provide", "dojo.Stateful"],
 ["provide", "dijit._WidgetBase"],
@@ -27,7 +27,7 @@ return {depends: [["provide", "coursehome.DefaultView"],
 ["provide", "dijit.layout.ContentPane"],
 ["provide", "dojo.cache"],
 ["provide", "dijit._Templated"],
-["provide", "coursehome.DefaultView"],
+["provide", "videoroyale.DefaultView"],
 ["i18n._preloadLocalizations", "coursehome.nls.DefaultView", ["ROOT","ar","ca","cs","da","de","de-de","el","en","en-gb","en-us","es","es-es","fi","fi-fi","fr","fr-fr","he","he-il","hu","it","it-it","ja","ja-jp","ko","ko-kr","nb","nl","nl-nl","pl","pt","pt-br","pt-pt","ru","sk","sl","sv","th","tr","xx","zh","zh-cn","zh-tw"]]],
 defineResource: function(dojo, dijit, dojox){/*
 	Copyright (c) 2004-2011, The Dojo Foundation All Rights Reserved.
@@ -42,7 +42,7 @@ defineResource: function(dojo, dijit, dojox){/*
 		http://dojotoolkit.org
 */
 
-dojo.provide("coursehome.DefaultView");
+dojo.provide("videoroyale.DefaultView");
 if(!dojo._hasResource["dijit._base.manager"]){ //_hasResource checks added by build. Do not use _hasResource directly in your code.
 dojo._hasResource["dijit._base.manager"] = true;
 dojo.provide("dijit._base.manager");
@@ -7009,9 +7009,9 @@ dojo.extend(dijit._Widget,{
 
 }
 
-if(!dojo._hasResource["coursehome.DefaultView"]){ //_hasResource checks added by build. Do not use _hasResource directly in your code.
-dojo._hasResource["coursehome.DefaultView"] = true;
-dojo.provide("coursehome.DefaultView");
+if(!dojo._hasResource["videoroyale.DefaultView"]){ //_hasResource checks added by build. Do not use _hasResource directly in your code.
+dojo._hasResource["videoroyale.DefaultView"] = true;
+dojo.provide("videoroyale.DefaultView");
 
 // Require base classes / mixins
 
@@ -7019,7 +7019,7 @@ dojo.provide("coursehome.DefaultView");
 
 
 
-dojo.declare("coursehome.DefaultView", [dijit.layout.ContentPane, dijit._Templated, dijit._Container], {
+dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templated, dijit._Container], {
 
 	constructor: function() {
 		// this.accessToken
