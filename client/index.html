@@ -73,17 +73,7 @@
 						</form>
 
 					    <div class="notes" id="notes">
-					    	<div class="note">
-					    		<div class="note-bubble">
-						    		<div class="notetext"><a class="label" href="javascript:void(0);">00:12</a> Here is some text Here is some text Here is some text Here is some text Here is some text</div>
-						    	</div>
-						    </div>
 
-						    <div class="note">
-					    		<div class="note-bubble-highlighted">
-						    		<div class="notetext"><a class="label" href="javascript:void(0);">01:52</a> Here is some text Here is some text </div>
-						    	</div>
-						    </div>
 						</div>
 					</div>
 				</div>
@@ -111,6 +101,15 @@
 			</div>
 		</div>
 	</script>
+
+	<script type="text/template" id="notesTemplate">
+		<div class="note">
+    		<div id="<%= _id %>" class="note-bubble">
+	    		<div class="notetext"><a class="label" href="javascript:void(0);"><%= timeStamp %></a> <%= noteText %></div>
+	    	</div>
+	    </div>
+	</script>
+
 
 	<script src="libs/jquery/jquery-min.js"></script>
 	<script src="libs/underscore/underscore-min.js"></script>
