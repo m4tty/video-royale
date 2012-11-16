@@ -46,6 +46,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 						} else {
 							commentsContainer.append(templStr);
 						}
+						lastDisplayedCommentId = newComment._id;
 						commentsById[newComment._id] = newComment;
 						commentAddedCallback(newComment);
 					}

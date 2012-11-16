@@ -62,6 +62,8 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 						}
 						
 						notesById[newNote._id] = newNote;
+
+						$("#" + newNote._id).attr('class', 'note-bubble-highlighted');
 						noteAddedCallback(newNote, nextNote);
 					}
 				});
