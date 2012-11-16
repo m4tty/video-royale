@@ -95,15 +95,21 @@ exports.deleteVideo = function(req, res) {
 var populateDB = function() {
     var videos = [
     {
-    		"name": "test",
+    		"name": "Physics of the Blob Jump",
     		"duration": 113000,
     		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
     		"autoStart": false
     },
     {
-    		"name": 'test2',
+    		"name": 'Intro',
     		"duration": 113000,
-    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/intro.mp4",
+    		"autoStart": false
+    },
+    {
+    		"name": 'Outro',
+    		"duration": 113000,
+    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/outro.mp4",
     		"autoStart": false
     }];
 
@@ -117,34 +123,69 @@ var populateDB = function() {
 	        	console.log('err', err);
 
 		        	for (var i = items.length - 1; i >= 0; i--) {
-		        		var contentFrames = [
-					    {
-					    	"videoId": items[i]._id,
-					        "startTime": 3000,
-					    	"contentHtml": "blah blah hooray"
-					    },
-					    {
-					    	"videoId": items[i]._id,
-					        "startTime": 3000,
-					    	"contentHtml": "blah blah hooray 2"
-		   				 }];
+		        		var contentFrames = [];
+		        		if (items[i].name == 'Physics of the Blob Jump') {
+		        			console.log('inserting blob jump data');
+		     				//16 seconds start... for some material to fill intro
+							// 30 seconds starts the blob jumping
+							// 30 seconds falling velocity
+							// 40 seconds guy at peek height
+							// 46 seconds ends the best view of jump.  skip to 1.18.
+							// 1.18 overlay
+							// 1.22 time lapse pictures of falling and launch
+							// 1.30 ends time lapse and good material. stop/pause.
+			        		contentFrames = [
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 20000,
+						    	"contentHtml": "Blob Jumping is an outdoor water activity in which a participant sits on the end of a partially inflated air bag (known as a water trampoline or blob) and is then launched into the water after another participant jumps onto the air bag from a platform on the opposite side. The activity is popular at summer camps in North America. Various tricks may be performed while the participant is in the air. The air bag is approximately 10 meters long (33 feet) by 2 meters wide (6 feet). The recommended height for the tower is 15 feet above the water surface, or 10 feet above the air bag."
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 25000,
+						    	"contentHtml": "Distance, in order to calculate the velocity of a falling object.<br> <image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpingPlatformHeight.jpg'/>"
+						    },						    
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 30000,
+						    	"contentHtml": "Average velocity v of a falling object that has travelled distance d (averaged over time):<br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/fallingVelocity.png'/>"
+			   				 },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 38000,
+						    	"contentHtml": "To calculate the work energy principle, we need the positions of the objects at rest. <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpOffandLaunchHeights.jpg'></image>"
+			   				 },{
+						    	"videoId": items[i]._id,
+						        "startTime": 45000,
+						    	"contentHtml": "work energy principle <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/workEnergyPrinciple-latex.jpg'></image>"
+			   				 },{
+						    	"videoId": items[i]._id,
+						        "startTime": 82000,
+						    	"contentHtml": "Vertical position vs time <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/verticalPosVsTime.jpg'></image>"
+			   				 },
+			   				 {
+						    	"videoId": items[i]._id,
+						        "startTime": 90000,
+						    	"contentHtml": "Final calculation <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/InputsCalculation-latex.jpg'></image>"
+			   				 }
+			   				 ];
 
-					    db.collection('contentFrames', function(err, collection) {
-					        collection.insert(contentFrames, {safe:true}, function(err, result) {});
-					    });
+							db.collection('contentFrames', function(err, collection) {
+						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+						    });
+
+		        		}
+
+		        		
+
+					    
 
 
 				    var notes = [
 					    {
 					        "videoId": items[i]._id,
 					        "startTime": 3000,
-					    	"noteText": "blah blah hooray",
-					    	"userId": 12345
-					    },
-					    {
-					        "videoId": items[i]._id,
-					        "startTime": 3000,
-					    	"noteText": "blah blah hooray",
+					    	"noteText": "Awesome blob-jumping video",
 					    	"userId": 12345
 					    }];
 
@@ -155,17 +196,17 @@ var populateDB = function() {
 					    var comments = [
 					    {
 					        "videoId": items[i]._id,
-					        "startTime": 1000,
-					    	"commentText": "blah blah hooray",
+					        "startTime": 30000,
+					    	"commentText": "Woo hoo",
 					    	"userId":12345,
 					    	"userFullName": "Nikola Tesla"
 					    },
 					    {
 					        "videoId": items[i]._id,
 					        "startTime": 3000,
-					    	"commentText": "blah blah hooray",
+					    	"commentText": "Looks like fun",
 					    	"userId":12345,
-					    	"userFullName": "Nikola Tesla"
+					    	"userFullName": "Albert Einstein"
 					    }];
 
 					    db.collection('comments', function(err, collection) {
