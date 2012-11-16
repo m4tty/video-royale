@@ -31,7 +31,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 						userId: meData.me.id,
 						videoId: videoId,
 						userFullName: meData.me.firstName + " " + meData.me.lastName,
-						avatarUrl: "../affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
+						avatarUrl: "../Affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
 					};
 				$.ajax({
 					type: "POST",
