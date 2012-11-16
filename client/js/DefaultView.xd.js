@@ -7057,6 +7057,9 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			var port = p_url.replace(/[a-zA-Z0-9]*?:\/\/.*?(:\d+)?($|\/.*)/, "$1").toLowerCase();
 			return protocol + domain + port;
 		};
+		if (p_event.origin !== _getOriginOfUrl(this.linkedContentUrl)) {
+			return;
+		}
 		console.log("EVENT", p_event);
 		var message;
 		try {
