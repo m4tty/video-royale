@@ -37,7 +37,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 					dataType: "json",
 					success: function(data) {
 						newComment._id = new Date().getTime();
-						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken);
+						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
 						$("#" + lastDisplayedCommentId).before(templStr);
 					}
 				});
