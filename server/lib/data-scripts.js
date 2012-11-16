@@ -316,7 +316,7 @@ var populateDB = function() {
 			        		{
 						    	"videoId": items[i]._id,
 						        "startTime": 13000,
-						    	"contentHtml": "1+1=?<br/><a href='javascript:app.navigate(52000);'>1</a><br /><a href='javascript:app.navigate(27000);'>2</a><br /><a href='javascript:app.navigate(52000);'>3</a>  "
+						    	"contentHtml": "1+1=?<br/><a href='javascript:videoroyale.navigate(52000);'>1</a><br /><a href='javascript:videoroyale.navigate(27000);'>2</a><br /><a href='javascript:videoroyale.navigate(52000);'>3</a>  "
 						    },
 						    {
 						    	"videoId": items[i]._id,
