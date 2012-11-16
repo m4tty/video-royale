@@ -1,3 +1,103 @@
+window._isBadIE = false;
+
+if (navigator.appName == 'Microsoft Internet Explorer') {
+	var rv = -1;
+	var osv = -1;
+	var ua = navigator.userAgent;
+	var re  = /MSIE ([0-9]{1,}[\.0-9]{0,})/;
+	if (re.exec(ua) !== null) {
+		rv = parseFloat( RegExp.$1 );
+	}
+		
+	var os = /Windows NT ([0-9]{1,}[\.0-9]{0,})/;
+
+	if (os.exec(ua) !== null) {
+		osv = parseFloat( RegExp.$1 );
+	}
+	
+	// if we're using IE7 or IE8 on WinXP
+	window._isBadIE = ((rv > 0 && rv < 8) || (rv > 7 && rv < 9 && osv < 6));
+}
+
+window.usePostMessage = (("postMessage" in window) && !window._isBadIE) ? true : false;
+
+window.postMessageHandler = function(p_event) {
+	var message;
+	try {
+
+		// parse the data of the message into an object
+		message = JSON.parse(p_event.data);
+	}
+	catch (p_error) {
+		// if the parsing into JSON object failed, then we don't care about the message
+		if ("console" in window) console.log("Error parsing message: " + message);
+		message = {};
+	}
+	console.log(message);
+	window.userId = message.userId;
+	window.courseId = message.courseId;
+	window.menuItemId = message.menuItemId;
+	window.accessToken = message.accessToken;
+
+	window.appIsReady();
+	
+};
+
+window.onload = function() {
+	if (window.usePostMessage) {
+		if (window.addEventListener) {
+			window.addEventListener('message', window.postMessageHandler, false);
+		}
+		else if (window.attachEvent) {
+			window.attachEvent('onmessage', window.postMessageHandler);
+		}
+
+		window.parent.postMessage({ready: true}, _getQuerystringParameterValue("origin"));
+	}
+	else {
+		if ("console" in window) console.log("YOUR BROWSER SUXX");
+		return;
+	}	
+};
+
+var _getOriginOfUrl = function(p_url) {
+	// "http://" or "https://"
+	var protocol = p_url.replace(/([a-zA-Z0-9]*?:\/\/).*?(\/.*|$)/, "$1").toLowerCase();
+	var domain = p_url.replace(/[a-zA-Z0-9]*?:\/\/(.*?)(\/.*|$|:\d+.*)/, "$1").toLowerCase();
+	var port = p_url.replace(/[a-zA-Z0-9]*?:\/\/.*?(:\d+)?($|\/.*)/, "$1").toLowerCase();
+	return protocol + domain + port;
+};
+
+var _getQuerystringParameterValue = function(parameterName) {
+	var querystring = window.location.search;
+	if(querystring.substr(0,1) == "?")
+	{
+		querystring = querystring.substr(1);
+	}
+	var parameterArray = querystring.split("&");
+	if (parameterArray)
+	{
+		for (var i = 0; i < parameterArray.length; i++)
+		{           
+			if (parameterArray[i].length > 0)
+			{
+				var nameValuePair = parameterArray[i].split("=");
+				if (nameValuePair.length == 2 && nameValuePair[0] == parameterName)
+				{
+					return nameValuePair[1];
+				}
+			}
+		}
+	}
+	return null;
+};
+
+
+window.appIsReady = function() {
+	if ("console" in window) console.log("IMPLEMENT THIS PLEASE!");
+};
+
+
 var App = function() {
 	var popcorn;
 

@@ -127,9 +127,12 @@
 
 	<script>
 		var videoroyale;
-		$(function(){
-			videoroyale = new App();
-			videoroyale.initialize("50a535dc77f1448025000002");
-      	});
+		window.appIsReady = function() {
+			console.log("APP IS READY");
+			$(function(){
+				videoroyale = new App();
+				videoroyale.initialize("50a535dc77f1448025000002");
+	      	});
+		};
 	</script>
 </html>

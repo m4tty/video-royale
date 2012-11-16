@@ -7061,24 +7061,25 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			return;
 		}
 		console.log("EVENT", p_event);
-		var message;
-		try {
+		var message = p_event.data;
+		/*try {
 			// parse the data of the message into an object
 			message = JSON.parse(p_event.data);
 		}
 		catch (p_error) {
 			// if the parsing into JSON object failed, then we don't care about the message
-			if ("console" in window) console.log("Error parsing message: " + message);
+			if ("console" in window) console.log("Error parsing message: " + p_error);
 			message = {};
-		}
+		}*/
 		if ("console" in window) console.log("message", message);
 		if (message.ready) {
 			var data = {
 				accessToken: this.accessToken,
 				courseId: this.courseId,
-				menuItemId: this.menuItemId
+				menuItemId: this.menuItemId,
+				userId: this.userId
 			};
-			this.iframeNode.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
+			this.iframeNode.contentWindow.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
 		}
 		else {
 			if ("console" in window) console.log("Something went horribly wrong");
