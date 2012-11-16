@@ -302,6 +302,12 @@ var App = function() {
 				$("#addCommentForm").slideDown();
 			});
 
+			$("#addNoteButton").click(function() {
+				$("#addNoteTime").html("@ " + getFormattedTime(popcorn.currentTime()));
+				$("#addNoteTime").attr("data-time" + Math.floor(popcorn.currentTime()) * 1000);
+				$("#addNoteForm").slideDown();
+			});
+
 //		});
 	};
 
