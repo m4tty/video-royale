@@ -94,11 +94,11 @@
 	</body>
 
 	<script type="text/template" id="commentsTemplate">
-		<div id="<%= _id %>" class="comment">
-			<img src="<%= avatarUrl %>" class="img-rounded avatar"/>
+		<div id="<%= comment._id %>" class="comment">
+			<img src="<%= comment.avatarUrl %>?Authorization=<%= token %>" class="img-rounded avatar"/>
 			<div class="bubble">
-				<div class="bubbletext"><%= commentText %></div>
-				<div id="<%= userId %>" class="bubblesig">- <%= userFullName %></div>
+				<div class="bubbletext"><%= comment.commentText %></div>
+				<div id="<%= comment.userId %>" class="bubblesig">- <%= comment.userFullName %></div>
 			</div>
 		</div>
 	</script>
@@ -130,8 +130,22 @@
 		window.appIsReady = function() {
 			console.log("APP IS READY");
 			$(function(){
-				videoroyale = new App();
-				videoroyale.initialize("50a535dc77f1448025000002");
+
+				$.ajax({
+					type: "GET",
+					url: "../phapi/windmilltoken",
+					dataType: "json",
+					headers: {
+						"X-Authorization": "Access_Token access_token=" + window.accessToken
+					},
+					success: function(data) {
+						console.log(data);
+						window.accessToken = data.windmill_token.access_token;
+						videoroyale = new App();
+						videoroyale.initialize("50a535dc77f1448025000002");
+					}
+				});
+				
 	      	});
 		};
 	</script>
