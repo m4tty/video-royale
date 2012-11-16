@@ -13,7 +13,7 @@ var ContentFrameMgr = function(contentFrames, contentFrameDivId, thumbnailDivId,
 
 	var loadContentFrames = function(revealDiv, contentFrames) {
 		for(var i=0; i<contentFrames.length; i++) {
-			jQuery('<section/>', {text: contentFrames[i].contentHtml}).appendTo(revealDiv);
+			$('<section/>', {text: contentFrames[i].contentHtml}).appendTo(revealDiv);
 		}
 	}
 
@@ -44,7 +44,7 @@ var ContentFrameMgr = function(contentFrames, contentFrameDivId, thumbnailDivId,
 	revealOptions.keyboard = true;
 	thumbnailReveal.initialize(revealOptions);
 
-	thumbnailReveal.toggleOverview();
+	setTimeout(thumbnailReveal.toggleOverview, 100);
 
 	
 };
