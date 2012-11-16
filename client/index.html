@@ -43,23 +43,7 @@
 						    </div>
 						</form>
 
-					    <div class="comments">
-						    <div class="comment">
-						    	<img src="http://img1.jurko.net/avatar_14053.jpg" class="img-rounded avatar"/>
-						    	<div class="bubble">
-						    		<div class="bubbletext">Here is some text Here is some text Here is some text Here is some text Here is some text</div>
-						    		<div class="bubblesig">- Nikola Tesla</div>
-						    	</div>
-							</div>
-
-
-							<div class="comment">
-						    	<img src="http://img1.jurko.net/avatar_12535.jpg" class="img-rounded avatar"/>
-						    	<div class="bubble">
-						    		<div class="bubbletext">Here is some more text</div>
-						    		<div class="bubblesig">- Some other dude</div>
-						    	</div>
-							</div>
+					    <div id="comments" class="comments">
 						</div>
 					</div>
 				</div>
@@ -120,29 +104,28 @@
 	</body>
 
 	<script type="text/template" id="commentsTemplate">
-		<div id="<%= comment.id %>" class="comment">
-			<img src="<%= comment.avatarUrl %>" class="img-rounded avatar"/>
+		<div id="<%= _id %>" class="comment">
+			<img src="<%= avatarUrl %>" class="img-rounded avatar"/>
 			<div class="bubble">
-				<div class="bubbletext"><%= comment.text %></div>
-				<div id="<%= comment.authorId %>" class="bubblesig">- <%= comment.authorName %></div>
+				<div class="bubbletext"><%= commentText %></div>
+				<div id="<%= userId %>" class="bubblesig">- <%= userFullName %></div>
 			</div>
 		</div>
 	</script>
 
-	<script data-main="js/main" src="libs/jquery/jquery-min.js"></script>
-	<script data-main="js/main" src="libs/underscore/underscore-min.js"></script>
-	<script data-main="js/main" src="libs/bootstrap/bootstrap-min.js"></script>
-	<script data-main="js/main" src="libs/reveal/js/reveal.js"></script>
-	<script data-main="js/main" src="libs/reveal/js/head.min.js"></script>
-	<script data-main="js/main" src="libs/popcorn/popcorn-complete.min.js"></script>
+	<script src="libs/jquery/jquery-min.js"></script>
+	<script src="libs/underscore/underscore-min.js"></script>
+	<script src="libs/bootstrap/bootstrap-min.js"></script>
+	<script src="libs/reveal/js/reveal.js"></script>
+	<script src="libs/reveal/js/head.min.js"></script>
+	<script src="libs/popcorn/popcorn-complete.min.js"></script>
 
-	<script data-main="js/main" src="js/app.js"></script>
-	<script data-main="js/main" src="js/contentFrameMgr.js"></script>
-	<script data-main="js/main" src="js/noteMgr.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/contentFrameMgr.js"></script>
+	<script src="js/commentsMgr.js"></script>
+	<script src="js/noteMgr.js"></script>
 
 	<script>
-		
-
 		$(function(){
 			var app = new App();
 			app.initialize("50a535dc77f1448025000002");
