@@ -38,7 +38,7 @@ exports.findById = function(req, res) {
 				    	console.log('videoid1', videoid);
 						 db.collection('contentFrames', function(err, collection) {
 						 	console.log('videoid2', videoid);
-						        collection.find({'videoId':videoid}).toArray(function(err, item) {
+						        collection.find({'videoId':new BSON.ObjectID(videoid)}).toArray(function(err, item) {
 									// if (err) {
 									// 	return err;
 									// }
@@ -51,7 +51,7 @@ exports.findById = function(req, res) {
 				    },
 			     	function(callback){
 	 					db.collection('notes', function(err, collection) {
-						        collection.find({'videoId':videoid}).toArray(function(err, item) {
+						        collection.find({'videoId':new BSON.ObjectID(videoid)}).toArray(function(err, item) {
 									// if (err) {
 									// 	return err;
 									// }
@@ -64,7 +64,7 @@ exports.findById = function(req, res) {
 				    },
 				    function(callback){
 	 						db.collection('comments', function(err, collection) {
-						        collection.find({'videoId':videoid}).toArray(function(err, item) {
+						        collection.find({'videoId':new BSON.ObjectID(videoid)}).toArray(function(err, item) {
 									// if (err) {
 									// 	return err;
 									// }
