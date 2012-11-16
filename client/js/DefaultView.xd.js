@@ -7026,17 +7026,18 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		// this.courseId
 		console.log("constructor!!");
 		// override
-		this.templateString = dojo.cache("videoroyale.ui", "templates/DefaultView.html", "<div class=\"\">\r\n\t<iframe id=\"videoRoyale\" src=\"\" />\r\n</div>\r\n");
+		this.templateString = dojo.cache("videoroyale.ui", "templates/DefaultView.html", "<div style=\"width:100%;height:100%;\" class=\"\">\r\n\t<iframe dojoAttachPoint=\"iframeNode\" id=\"videoRoyale\" style=\"width:100%;height:100%;overflow:hidden;\"src=\"\" />\r\n</div>\r\n");
 		this.doLayout = false;
 	},
 
 	postCreate: function () {
 		this.menuItemId = this.digitalVellum.menuItemApi.getSelectedPrimaryNavigationMenuItem().id;
-		
+
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
 		this.linkedContentUrl = "http://ec2-174-129-109-6.compute-1.amazonaws.com/client/index.html"
-		this.appFrame = document.getElementById("videoRoyale");
-		this.appFrame.attr("src", this.linkedContentUrl + "?origin=" + this.origin);
+		//this.appFrame = document.getElementById("videoRoyale");
+		dojo.query(this.iframeNode).attr("src", this.linkedContentUrl + "?origin=" + this.origin);
+		//this.iframeNode.attr("src", this.linkedContentUrl + "?origin=" + this.origin);
 		
 		if (window.addEventListener) {
 			window.addEventListener('message', dojo.hitch(this, this.postMessageHandler), false);
@@ -7073,7 +7074,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 				courseId: this.courseId,
 				menuItemId: this.menuItemId
 			};
-			this.appFrame.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
+			this.iframeNode.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
 		}
 		else {
 			if ("console" in window) console.log("Something went horribly wrong");
