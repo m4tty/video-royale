@@ -119,14 +119,16 @@ var populateDB = function() {
 			        "startTime": 1000,
 			    	"commentText": "blah blah hooray",
 			    	"userId":12345,
-			    	"userFullName": "Nikola Tesla"
+			    	"userFullName": "Nikola Tesla",
+			    	"avatarUrl": "http://persona.ecollege.com/blah"
 			    },
 			    {
 			        "videoId": items[i]._id,
 			        "startTime": 3000,
 			    	"commentText": "blah blah hooray",
 			    	"userId":12345,
-			    	"userFullName": "Nikola Tesla"
+			    	"userFullName": "Nikola Tesla",
+			    	"avatarUrl": "http://persona.ecollege.com/blah"
 			    }];
 
 			    db.collection('comments', function(err, collection) {
