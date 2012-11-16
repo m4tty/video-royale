@@ -219,7 +219,7 @@ var populateDB = function() {
 			        		{
 						    	"videoId": items[i]._id,
 						        "startTime": 5000,
-						    	"contentHtml": "Tim Schwecke - Matt Self - Mac Angel"
+						    	"contentHtml": "Tim Schwecke - Matt Self - Mac Angell"
 						    },
 						    {
 						    	"videoId": items[i]._id,
@@ -289,7 +289,7 @@ var populateDB = function() {
 			   				 },
 						   	{
 						    	"videoId": items[i]._id,
-						        "startTime": 47000,
+						        "startTime": 29000,
 						    	"contentHtml": "Thanks! Vote for Video Royale."
 			   				 }
 			   				 ];
@@ -298,6 +298,40 @@ var populateDB = function() {
 						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
 						    });
 
+
+
+		        		}
+
+
+					if (items[i].name == 'Adaptive') {
+		        			console.log('inserting adaptive data');
+		        			var bsonId = new BSON.ObjectID('50a694a45d7bd6325dcd9ca2');
+		// <a href="javascript:app.navigate(52000);">1</a><br /><a href="javascript:app.navigate(27000);">2</a><br /><a href="javascript:app.navigate(52000);">3</a>
+			        		contentFrames = [
+			        		{
+						    	"videoId": items[i]._id,
+						        "startTime": 1000,
+						    	"contentHtml": "Adaptive Learning"
+						    },
+			        		{
+						    	"videoId": items[i]._id,
+						        "startTime": 13000,
+						    	"contentHtml": "1+1=?<br/><a href='javascript:app.navigate(52000);'>1</a><br /><a href='javascript:app.navigate(27000);'>2</a><br /><a href='javascript:app.navigate(52000);'>3</a>  "
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 27000,
+						    	"contentHtml": "Correct!"
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 52000,
+						    	"contentHtml": "InCorrect!"
+						    }];
+
+							db.collection('contentFrames', function(err, collection) {
+						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+						    });
 
 
 		        		}
