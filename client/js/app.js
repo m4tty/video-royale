@@ -120,6 +120,11 @@ var App = function() {
 				endTime: 22000,
 				action: "rate",
 				rate: 0.2
+			},{
+				startTime: 25000,
+				endTime: 38000,
+				action: "skip",
+				skipToTime: 38000
 			}],
 			captions: [{
 				startTime: 13000,
@@ -269,13 +274,22 @@ var App = function() {
 				else if(action.action === "rate") {
 					popcorn.code({
 						start: (action.startTime / 1000),
-						end: (action.endTime / 1000) + 1,
+						end: (action.endTime / 1000),
 						onStart: function(options) {
 							popcorn.playbackRate(action.rate);
 						},
 						onEnd: function(options) {
 							popcorn.playbackRate(1);
-						},
+						}
+					});
+				}
+				else if(action.action === "skip") {
+					popcorn.code({
+						start: (action.startTime / 1000),
+						end: (action.endTime / 1000),
+						onStart: function(options) {
+							popcorn.currentTime(action.skipToTime / 1000);
+						}
 					});
 				}
 
