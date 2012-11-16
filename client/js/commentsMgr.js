@@ -1,9 +1,12 @@
 
-var CommentsMgr = function(comments, commentsDivId, videoId) {
+var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallback) {
 
 	var commentsById = {}, tempStr;
 	var commentsContainer = $("#" + commentsDivId);
 	var lastDisplayedCommentId = null;
+
+	comments.sort(function(a,b) { return b.startTime - a.startTime } );
+
 	for (var i =0; i < comments.length; i++) {
 		commentsById[comments[i]._id] = comments[i];
 		templStr = _.template($("#commentsTemplate").html(), { comment: comments[i], token: window.accessToken });
@@ -39,6 +42,8 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 						newComment._id = new Date().getTime();
 						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
 						$("#" + lastDisplayedCommentId).before(templStr);
+						commentsById[newComment._id] = newComment;
+						addCommentCallback(newComment);
 					}
 				});
 			}
