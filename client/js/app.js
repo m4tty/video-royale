@@ -5,7 +5,8 @@ var App = function() {
 			video: {
 				name: "test2",
 				duration: 113000,
-				url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+				url: "http://www.808.dk/pics/video/gizmo.mp4",
+				//url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
 				autoStart: true,
 				_id: "50a5736b4af16cb849000004"
 			},
@@ -22,7 +23,20 @@ var App = function() {
 				startTime: 9000,
 				contentHtml: "he is not catching much."
 			}],
-			notes: [ ],
+			notes: [ {
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 3000,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000005"
+		    },
+		    {
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 3000,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000006"
+		    }],
 			comments: [
 				{
 					startTime: 2000,
@@ -148,7 +162,7 @@ var App = function() {
 			}
 
 			//Load the notes into the UI
-			var noteMgr = new NoteMgr(data.notes, "notes", noteSelectedCallback, noteAddedCallback);
+			var noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback, noteAddedCallback);
 
 			if(data.video.autoStart) {
 				// play the video right away
