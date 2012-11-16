@@ -58,7 +58,7 @@
 					</div>
 				</div>
 
-				<div class="span5">
+				<div class="span5" style="height: 100%;">
 					<div class="notes-container">
 
 						<div class="centered-div">
@@ -67,9 +67,9 @@
 
 					    <form id="addNoteForm" style="display:none;">
 						    <div class="input-prepend input-append">
-						    	<span class="add-on">@ 00:12</span>
-						    	<input class="span3" id="prependedInput" type="text" placeholder="Note...">
-						    	<a class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
+						    	<span id="addNoteTime" class="add-on" data-time="1200">@ 00:12</span>
+						    	<input class="span3" id="noteInput" type="text" placeholder="Note...">
+						    	<a id="createNoteButton"class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
 						    </div>
 						</form>
 
@@ -95,7 +95,7 @@
 
 	<script type="text/template" id="commentsTemplate">
 		<div id="<%= comment._id %>" class="comment">
-			<img src="<%= comment.avatarUrl %>?Authorization=<%= token.accessToken %>" class="img-rounded avatar"/>
+			<img src="<%= comment.avatarUrl %>?Authorization=<%= token %>" class="img-rounded avatar"/>
 			<div class="bubble">
 				<div class="bubbletext"><%= comment.commentText %></div>
 				<div id="<%= comment.userId %>" class="bubblesig">- <%= comment.userFullName %></div>
@@ -142,7 +142,7 @@
 						console.log(data);
 						window.accessToken = data.windmill_token.access_token;
 						videoroyale = new App();
-						videoroyale.initialize("50a535dc77f1448025000002");
+						videoroyale.initialize("50a5816390c1dc3126000001");
 					}
 				});
 				

@@ -22,29 +22,27 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 				"X-Authorization": "Access_Token access_token=" + window.accessToken
 			},
 			success: function(meData) {
-
-				$.ajax({
-					type: "POST",
-					url: "../videos/" + videoId + "/comments",
-					data: {
+				var newComment = {
 						commentText: commentText,
 						startTime: startTime,
 						userId: meData.me.id,
 						videoId: videoId,
 						userFullName: meData.me.firstName + " " + meData.me.lastName,
 						avatarUrl: "../affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
-					},
+					};
+				$.ajax({
+					type: "POST",
+					url: "../videos/" + videoId + "/comments",
+					data: newComment,
 					dataType: "json",
 					success: function(data) {
-
+						newComment._id = new Date().getTime();
+						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
+						$("#" + lastDisplayedCommentId).before(templStr);
 					}
 				});
 			}
 		});
-		/**/
-
-		//templStr = _.template($("#commentsTemplate").html(), comments[i]);
-		//commentsContainer.prepend(templStr);
 	});
 
 	this.show = function(commentId) {

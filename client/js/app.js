@@ -102,7 +102,7 @@ var App = function() {
 	var popcorn;
 
 	this.initialize = function(videoId) {
-		var data = {
+		var data1 = {
 			video: {
 				name: "test2",
 				duration: 113000,
@@ -120,6 +120,11 @@ var App = function() {
 				endTime: 22000,
 				action: "rate",
 				rate: 0.2
+			},{
+				startTime: 25000,
+				endTime: 38000,
+				action: "skip",
+				skipToTime: 38000
 			}],
 			captions: [{
 				startTime: 13000,
@@ -244,7 +249,7 @@ var App = function() {
 
 
 
-//		$.get("/videos/" + videoId + "/royale", function(data){
+			$.get("../videos/" + videoId + "/royale", function(data){
 	
 			//Set the video source
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
@@ -269,13 +274,22 @@ var App = function() {
 				else if(action.action === "rate") {
 					popcorn.code({
 						start: (action.startTime / 1000),
-						end: (action.endTime / 1000) + 1,
+						end: (action.endTime / 1000),
 						onStart: function(options) {
 							popcorn.playbackRate(action.rate);
 						},
 						onEnd: function(options) {
 							popcorn.playbackRate(1);
-						},
+						}
+					});
+				}
+				else if(action.action === "skip") {
+					popcorn.code({
+						start: (action.startTime / 1000),
+						end: (action.endTime / 1000),
+						onStart: function(options) {
+							popcorn.currentTime(action.skipToTime / 1000);
+						}
 					});
 				}
 
@@ -408,7 +422,7 @@ var App = function() {
 				$("#addNoteForm").slideDown();
 			});
 
-//		});
+		});
 	};
 
 	this.navigate = function(milliseconds) {
