@@ -51,6 +51,8 @@ exports.findAll = function(req, res) {
 
 exports.addNote = function(req, res) {
     var note = req.body;
+   var videoid = req.params.videoid;
+    note.videoId = new BSON.ObjectID(videoid);
     console.log('Adding note: ' + JSON.stringify(note));
     db.collection('notes', function(err, collection) {
         collection.insert(note, {safe:true}, function(err, result) {

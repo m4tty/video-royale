@@ -52,6 +52,8 @@ exports.findAll = function(req, res) {
 
 exports.addComment = function(req, res) {
     var comment = req.body;
+   var videoid = req.params.videoid;
+    comment.videoId = new BSON.ObjectID(videoid);
 
     console.log('comment', comment);
 
