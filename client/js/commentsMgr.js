@@ -39,9 +39,13 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 					data: newComment,
 					dataType: "json",
 					success: function(data) {
-						newComment._id = new Date().getTime();
+						newComment._id = data._id;
 						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
-						$("#" + lastDisplayedCommentId).before(templStr);
+						if (lastDisplayedCommentId) {
+							$("#" + lastDisplayedCommentId).before(templStr);
+						} else {
+							commentsContainer.append(templStr);
+						}
 						commentsById[newComment._id] = newComment;
 						commentAddedCallback(newComment);
 					}

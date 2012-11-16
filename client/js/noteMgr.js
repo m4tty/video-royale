@@ -53,7 +53,7 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 					data: newNote,
 					dataType: "json",
 					success: function(data) {
-						newNote._id = new Date().getTime();
+						newNote._id = data._id;
 						templStr = _.template($("#notesTemplate").html(), newNote);
 						if (currentlyActiveNote.startTime < newNote.startTime) {
 							$("#" + currentlyActiveNote._id).after(templStr);
