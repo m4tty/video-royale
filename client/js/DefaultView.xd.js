@@ -7074,7 +7074,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 				courseId: this.courseId,
 				menuItemId: this.menuItemId
 			};
-			this.appFrame.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
+			this.iframeNode.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
 		}
 		else {
 			if ("console" in window) console.log("Something went horribly wrong");
