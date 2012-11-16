@@ -102,7 +102,7 @@ var App = function() {
 	var popcorn;
 
 	this.initialize = function(videoId) {
-		var data = {
+		var data1 = {
 			video: {
 				name: "test2",
 				duration: 113000,
@@ -244,7 +244,7 @@ var App = function() {
 
 
 
-//		$.get("/videos/" + videoId + "/royale", function(data){
+			$.get("../videos/" + videoId + "/royale", function(data){
 	
 			//Set the video source
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
@@ -408,7 +408,7 @@ var App = function() {
 				$("#addNoteForm").slideDown();
 			});
 
-//		});
+		});
 	};
 
 	this.navigate = function(milliseconds) {
