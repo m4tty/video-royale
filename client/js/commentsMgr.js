@@ -16,7 +16,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 		var startTime = $("#addCommentTime").attr("data-time");
 		$.ajax({
 			type: "GET",
-			url: "wsod/me",
+			url: "../wsod/me",
 			dataType: "json",
 			headers: {
 				"X-Authorization": "Access_Token access_token=" + window.accessToken
@@ -25,7 +25,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 				console.log(meData);
 				$.ajax({
 					type: "POST",
-					url: "videos/" + videoId + "/comments",
+					url: "../videos/" + videoId + "/comments",
 					data: {
 						commentText: commentText,
 						startTime: startTime,
