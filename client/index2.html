@@ -21,7 +21,7 @@
 
 	<body>
 
-		<div class="app-container">
+	<div class="app-container">
 
 			<!-- Video -->
 			<div class="video-container" style="position: absolute; top: -25px; left: 10px;">
@@ -86,23 +86,23 @@
 				</div>
 			</div>
 
-		</div>
+	</div>
 
 	</body>
 
 	<script type="text/template" id="commentsTemplate">
-		<div id="<%= comment._id %>" class="comment">
-			<img src="<%= comment.avatarUrl %>?Authorization=<%= token %>" class="img-rounded avatar"/>
+		<div id="<%= _id %>" class="comment">
+			<img src="<%= avatarUrl %>" class="img-rounded avatar"/>
 			<div class="bubble">
-				<div class="bubbletext"><%= comment.commentText %></div>
-				<div id="<%= comment.userId %>" class="bubblesig">- <%= comment.userFullName %></div>
+				<div class="bubbletext"><%= commentText %></div>
+				<div id="<%= userId %>" class="bubblesig">- <%= userFullName %></div>
 			</div>
 		</div>
 	</script>
 
 	<script type="text/template" id="notesTemplate">
-		<div id="<%= _id %>" class="note">
-    		<div class="note-bubble">
+		<div id="note" class="note">
+    		<div id="<%= _id %>" class="note-bubble">
 	    		<div class="notetext"><a class="label" href="javascript:void(0);"><%= timeStamp %></a> <%= noteText %></div>
 	    	</div>
 	    </div>
@@ -124,26 +124,12 @@
 
 	<script>
 		var videoroyale;
-		window.appIsReady = function() {
-			console.log("APP IS READY");
+//		window.appIsReady = function() {
+//			console.log("APP IS READY");
 			$(function(){
-
-				$.ajax({
-					type: "GET",
-					url: "../phapi/windmilltoken",
-					dataType: "json",
-					headers: {
-						"X-Authorization": "Access_Token access_token=" + window.accessToken
-					},
-					success: function(data) {
-						console.log(data);
-						window.accessToken = data.windmill_token.access_token;
-						videoroyale = new App();
-						videoroyale.initialize(window.videoId);
-					}
-				});
-				
+				videoroyale = new App();
+				videoroyale.initialize("50a535dc77f1448025000002");
 	      	});
-		};
+//		};
 	</script>
 </html>
