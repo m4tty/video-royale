@@ -15,6 +15,15 @@ var App = function() {
 				time: 3000,
 				action: "pause"
 			}],
+			captions: [{
+				startTime: 13000,
+				endTime: 16000,
+				text: "This is a caption"
+			}, {
+				startTime: 16000,
+				endTime: 19000,
+				text: "Yet another caption"
+			}],
 			contentFrames: [{
 				startTime: 50,
 				contentHtml: "This is a bear."
@@ -97,9 +106,9 @@ var App = function() {
 			popcorn.currentTime(contentFrame.startTime / 1000);
 		};
 
-		// var noteSelectedCallback = function(note) {
-		// 	popcorn.currentTime(note.startTime / 1000);
-		// };
+		var noteSelectedCallback = function(note) {
+			popcorn.currentTime(note.startTime / 1000);
+		};
 
 		// var noteAddedCallback = function(note) {
 		// 	popcorn.code({
@@ -153,6 +162,25 @@ var App = function() {
 				}
 			}
 
+			//// Captions
+			var captionMgr = new CaptionMgr("caption");
+
+			//Load all of the actions into popcorn
+			for(var i=0; i<data.captions.length; i++) {
+				(function(caption) {
+					popcorn.code({
+						start: (caption.startTime / 1000),
+						end: (caption.endTime / 1000),
+						onStart: function(options) {
+							captionMgr.show(caption);
+						},
+						onEnd: function(options) {
+							captionMgr.hide();
+						}
+					});
+				}(data.captions[i]));
+			}
+
 
 			//// Content Frames
 
@@ -197,6 +225,8 @@ var App = function() {
 			//// Notes
 			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
 
+			//Load the notes into the UI
+			
 			//Load all of the notes into popcorn
 			for(var i=0; i<data.notes.length; i++) {
 				var note = data.notes[i];
@@ -225,11 +255,21 @@ var App = function() {
 							noteMgr.unhighlight(note);
 						}
 					});
+
+					
+
 				})(note, nextNote);
 			}
 
-			//Load the notes into the UI
-			var noteMgr = new NoteMgr(data.video, data.notes, "notes");
+			var noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback);
+
+			for(var i=0; i<data.notes.length; i++) {
+
+				var note = data.notes[i];
+				(function(note)  {
+					noteMgr.bindClick(note);
+				})(note);
+			}
 
 			if(data.video.autoStart) {
 				// play the video right away

@@ -23,9 +23,10 @@
 
 		<div class="container app-container">
 			<div class="row" style="height: 400px">
-				<div class="span7">
+				<div class="span7 video-container">
 					<video width="500" height="360" controls="controls" id="video">
 					</video>
+					<div class="caption" id="caption"></div>
 				</div>
 
 				<div class="span5" style="height: 100%;">
@@ -103,7 +104,7 @@
 	</script>
 
 	<script type="text/template" id="notesTemplate">
-		<div class="note">
+		<div id="note" class="note">
     		<div id="<%= _id %>" class="note-bubble">
 	    		<div class="notetext"><a class="label" href="javascript:void(0);"><%= timeStamp %></a> <%= noteText %></div>
 	    	</div>
@@ -122,6 +123,7 @@
 	<script src="js/contentFrameMgr.js"></script>
 	<script src="js/commentsMgr.js"></script>
 	<script src="js/noteMgr.js"></script>
+	<script src="js/captionMgr.js"></script>
 
 	<script>
 		var videoroyale;

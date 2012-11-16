@@ -3,6 +3,8 @@ var videosRoutes = require('./lib/videos-routes');
 var contentFramesRoutes = require('./lib/contentFrames-routes');
 var notesRoutes = require('./lib/notes-routes');
 var commentsRoutes = require('./lib/comments-routes');
+var actionsRoutes = require('./lib/actions-routes');
+var captionsRoutes = require('./lib/captions-routes');
 var royaleRoutes = require('./lib/royale-routes');
 var app = express();
 
@@ -38,6 +40,18 @@ app.get('/videos/:videoid/comments/:commentid',commentsRoutes.findById);
 app.post('/videos/:videoid/comments', commentsRoutes.addComment);
 app.put('/videos/:videoid/comments/:commentid', commentsRoutes.updateComment);
 app.delete('/videos/:videoid/comments/:commentid', commentsRoutes.deleteComment);
+
+app.get('/videos/:videoid/actions', actionsRoutes.findByVideoId);
+app.get('/videos/:videoid/actions/:actionid',actionsRoutes.findById);
+app.post('/videos/:videoid/actions', actionsRoutes.addAction);
+app.put('/videos/:videoid/actions/:actionid', actionsRoutes.updateAction);
+app.delete('/videos/:videoid/actions/:actionid', actionsRoutes.deleteAction);
+
+app.get('/videos/:videoid/captions', captionsRoutes.findByVideoId);
+app.get('/videos/:videoid/captions/:captionid',captionsRoutes.findById);
+app.post('/videos/:videoid/captions', captionsRoutes.addCaption);
+app.put('/videos/:videoid/captions/:captionid', captionsRoutes.updateCaption);
+app.delete('/videos/:videoid/captions/:captionid', captionsRoutes.deleteCaption);
 
 app.get('/videos/:videoid/royale',royaleRoutes.findById);
 
