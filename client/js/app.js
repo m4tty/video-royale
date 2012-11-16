@@ -1,4 +1,5 @@
 var App = function() {
+	var popcorn;
 
 	this.initialize = function(videoId) {
 		var data = {
@@ -10,12 +11,16 @@ var App = function() {
 				autoStart: true,
 				_id: "50a5736b4af16cb849000004"
 			},
+			actions: [{
+				time: 3000,
+				action: "pause"
+			}],
 			contentFrames: [{
 				startTime: 50,
 				contentHtml: "This is a bear."
 			},{
 				startTime: 3000,
-				contentHtml: "He is looking for food."
+				contentHtml: "Is he looking for food? <br/> <a href='javascript:videoroyale.navigate(6000);'>Yes</a> or <a href='javascript:videoroyale.navigate(9000);'>No</a>"
 			},{
 				startTime: 6000,
 				contentHtml: "But since he is lazy,"
@@ -86,6 +91,8 @@ var App = function() {
 			]
 		}
 
+
+
 		var contentFrameSelectedCallback = function(contentFrame, index) {
 			popcorn.currentTime(contentFrame.startTime / 1000);
 		};
@@ -128,7 +135,24 @@ var App = function() {
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
 
 			// Create a popcorn instance
-			var popcorn = Popcorn("#video");
+			popcorn = Popcorn("#video");
+
+			//// Actions
+
+			//Load all of the actions into popcorn
+			for(var i=0; i<data.actions.length; i++) {
+				var action = data.actions[i];
+				if(action.action === "pause") {
+					popcorn.code({
+						start: (action.time / 1000),
+						end: (action.time / 1000) + 1,
+						onStart: function(options) {
+							popcorn.pause();
+						}
+					});
+				}
+			}
+
 
 			//// Content Frames
 
@@ -139,7 +163,7 @@ var App = function() {
 				(function(index) {
 					popcorn.code({
 						start: (contentFrame.startTime / 1000),
-						end: 10,
+						end: (contentFrame.startTime / 1000) + 1,
 						onStart: function(options) {
 							contentFrameMgr.show(index);
 						}
@@ -168,7 +192,7 @@ var App = function() {
 			var contentFrameMgr = new ContentFrameMgr(data.contentFrames, "contentFrameReveal", "contentFrameThumbnailReveal", contentFrameSelectedCallback);
 			contentFrameMgr.show(0);
 
-			var commentsMgr = new CommentsMgr(data.comments, "comments");
+			var commentsMgr = new CommentsMgr(data.comments, "comments", videoId);
 
 			//// Notes
 			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
@@ -215,10 +239,14 @@ var App = function() {
 
 			$("#addCommentButton").click(function() {
 				$("#addCommentTime").html("@ " + getFormattedTime(popcorn.currentTime()));
-				$("#addCommentForm").slideToggle();
+				$("#addCommentTime").attr("data-time" + Math.floor(popcorn.currentTime()) * 1000);
+				$("#addCommentForm").slideDown();
 			});
 
 //		});
 	};
 
+	this.navigate = function(milliseconds) {
+		popcorn.currentTime(milliseconds / 1000).play();
+	};
 };

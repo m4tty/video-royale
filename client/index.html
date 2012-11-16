@@ -22,23 +22,23 @@
 	<body>
 
 		<div class="container app-container">
-			<div class="row">
+			<div class="row" style="height: 400px">
 				<div class="span7">
 					<video width="500" height="360" controls="controls" id="video">
 					</video>
 				</div>
 
-				<div class="span5">
+				<div class="span5" style="height: 100%;">
 					<div class="comments-container">
 						<div class="centered-div">
-							<a id="addCommentButton" class="" style="width:100%; display:block;" href="javascript:void(0);"><i class="icon-bullhorn"></i></a>
+							<a id="addCommentButton" href="javascript:void(0);"><i class="icon-bullhorn"></i></a>
 						</div>
 
-					    <form id="addCommentForm" style="width:100%; padding-top:5px; padding-bottom:5px" style="display:none;">
+					    <form id="addCommentForm" style="display:none;">
 						    <div class="input-prepend input-append" style="text-align:center;">
-						    	<span id="addCommentTime" class="add-on">@ 00:12</span>
-						    	<input class="span3" id="prependedInput" type="text" placeholder="Comment...">
-						    	<a class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
+						    	<span id="addCommentTime" class="add-on" data-time="1200">@ 00:12</span>
+						    	<input class="span3" id="commentInput" type="text" placeholder="Comment...">
+						    	<a id="createCommentButton" class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
 						    </div>
 						</form>
 
@@ -124,9 +124,10 @@
 	<script src="js/noteMgr.js"></script>
 
 	<script>
+		var videoroyale;
 		$(function(){
-			var app = new App();
-			app.initialize("50a535dc77f1448025000002");
+			videoroyale = new App();
+			videoroyale.initialize("50a535dc77f1448025000002");
       	});
 	</script>
 </html>

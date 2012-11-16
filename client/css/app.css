@@ -6,6 +6,7 @@
 .comments-container {
 	border: 1px solid #ccc;
 	border-radius: 5px;
+    height: 100%;
 }
 
 .notes-container {
