@@ -387,7 +387,7 @@ var App = function() {
 			var contentFrameMgr = new ContentFrameMgr(data.contentFrames, "contentFrameReveal", "contentFrameThumbnailReveal", contentFrameSelectedCallback);
 			contentFrameMgr.show(0);
 
-			commentsMgr = new CommentsMgr(data.comments, "comments", videoId);
+			commentsMgr = new CommentsMgr(data.comments, "comments", videoId, commentAddedCallback);
 
 			//// Notes
 			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
@@ -428,7 +428,7 @@ var App = function() {
 				})(note, nextNote);
 			}
 
-			noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback);
+			noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback, noteAddedCallback);
 
 			for(var i=0; i<data.notes.length; i++) {
 
