@@ -1,21 +1,26 @@
 var App = function() {
+	var popcorn;
 
 	this.initialize = function(videoId) {
 		var data = {
 			video: {
 				name: "test2",
 				duration: 113000,
-				url: "http://www.808.dk/pics/video/gizmo.mp4",
-				//url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+				//url: "http://www.808.dk/pics/video/gizmo.mp4",
+				url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
 				autoStart: true,
 				_id: "50a5736b4af16cb849000004"
 			},
+			actions: [{
+				time: 3000,
+				action: "pause"
+			}],
 			contentFrames: [{
 				startTime: 50,
 				contentHtml: "This is a bear."
 			},{
 				startTime: 3000,
-				contentHtml: "He is looking for food."
+				contentHtml: "Is he looking for food? <br/> <a href='javascript:videoroyale.navigate(6000);'>Yes</a> or <a href='javascript:videoroyale.navigate(9000);'>No</a>"
 			},{
 				startTime: 6000,
 				contentHtml: "But since he is lazy,"
@@ -25,18 +30,47 @@ var App = function() {
 			}],
 			notes: [ {
 		      "videoId": "50a5816390c1dc3126000002",
-		      "startTime": 3000,
+		      "startTime": 1000,
 		      "noteText": "blah blah hooray",
 		      "userId": 12345,
-		      "_id": "50a5816390c1dc3126000005"
+		      "_id": "50a5816390c1dc3126000001"
 		    },
 		    {
 		      "videoId": "50a5816390c1dc3126000002",
 		      "startTime": 3000,
 		      "noteText": "blah blah hooray",
 		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000002"
+		    },
+			{
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 6521,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000004"
+		    },
+			{
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 8956,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
 		      "_id": "50a5816390c1dc3126000006"
-		    }],
+		    },
+			{
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 10956,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000007"
+		    },
+			{
+		      "videoId": "50a5816390c1dc3126000002",
+		      "startTime": 11980,
+		      "noteText": "blah blah hooray",
+		      "userId": 12345,
+		      "_id": "50a5816390c1dc3126000008"
+		    }
+		    ],
 			comments: [
 				{
 					startTime: 2000,
@@ -57,26 +91,28 @@ var App = function() {
 			]
 		}
 
+
+
 		var contentFrameSelectedCallback = function(contentFrame, index) {
 			popcorn.currentTime(contentFrame.startTime / 1000);
 		};
 
-		var noteSelectedCallback = function(note) {
-			popcorn.currentTime(note.startTime / 1000);
-		};
+		// var noteSelectedCallback = function(note) {
+		// 	popcorn.currentTime(note.startTime / 1000);
+		// };
 
-		var noteAddedCallback = function(note) {
-			popcorn.code({
-				start: (note.startTime / 1000),
-				end: (note.startTime / 1000) + 10,
-				onStart: function(options) {
-					noteMgr.highlight(note);
-				},
-				onEnd: function(options) {
-					noteMgr.unhighlight(note);
-				}
-			});
-		};
+		// var noteAddedCallback = function(note) {
+		// 	popcorn.code({
+		// 		start: (note.startTime / 1000),
+		// 		end: (note.startTime / 1000) + 10,
+		// 		onStart: function(options) {
+		// 			noteMgr.highlight(note);
+		// 		},
+		// 		onEnd: function(options) {
+		// 			noteMgr.unhighlight(note);
+		// 		}
+		// 	});
+		// };
 
 		var getFormattedTime = function(seconds) {
 			var minutes = Math.floor(seconds/60);
@@ -99,7 +135,24 @@ var App = function() {
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
 
 			// Create a popcorn instance
-			var popcorn = Popcorn("#video");
+			popcorn = Popcorn("#video");
+
+			//// Actions
+
+			//Load all of the actions into popcorn
+			for(var i=0; i<data.actions.length; i++) {
+				var action = data.actions[i];
+				if(action.action === "pause") {
+					popcorn.code({
+						start: (action.time / 1000),
+						end: (action.time / 1000) + 1,
+						onStart: function(options) {
+							popcorn.pause();
+						}
+					});
+				}
+			}
+
 
 			//// Content Frames
 
@@ -110,7 +163,7 @@ var App = function() {
 				(function(index) {
 					popcorn.code({
 						start: (contentFrame.startTime / 1000),
-						end: 10,
+						end: (contentFrame.startTime / 1000) + 1,
 						onStart: function(options) {
 							contentFrameMgr.show(index);
 						}
@@ -142,15 +195,29 @@ var App = function() {
 			var commentsMgr = new CommentsMgr(data.comments, "comments", videoId);
 
 			//// Notes
+			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
 
 			//Load all of the notes into popcorn
 			for(var i=0; i<data.notes.length; i++) {
 				var note = data.notes[i];
-				
-				(function(note) {
+				var nextNote;
+
+				if (i+1 < data.notes.length) {
+					nextNote = data.notes[i+1];
+				} else {
+					nextNote = null;
+				}
+
+				(function(note, nextNote) {
+					var endTime = null;
+					if (nextNote) {
+						endTime = (note.startTime / 1000) + (nextNote.startTime / 1000 - note.startTime / 1000);
+					} else {
+						endTime = (note.startTime / 1000) + 10;
+					}
 					popcorn.code({
 						start: (note.startTime / 1000),
-						end: (note.startTime / 1000) + 10,
+						end: endTime,
 						onStart: function(options) {
 							noteMgr.highlight(note);
 						},
@@ -158,11 +225,11 @@ var App = function() {
 							noteMgr.unhighlight(note);
 						}
 					});
-				})(note);
+				})(note, nextNote);
 			}
 
 			//Load the notes into the UI
-			var noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback, noteAddedCallback);
+			var noteMgr = new NoteMgr(data.video, data.notes, "notes");
 
 			if(data.video.autoStart) {
 				// play the video right away
@@ -179,4 +246,7 @@ var App = function() {
 //		});
 	};
 
+	this.navigate = function(milliseconds) {
+		popcorn.currentTime(milliseconds / 1000).play();
+	};
 };
