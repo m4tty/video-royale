@@ -7076,7 +7076,8 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			var data = {
 				accessToken: this.accessToken,
 				courseId: this.courseId,
-				menuItemId: this.menuItemId
+				menuItemId: this.menuItemId,
+				userId: this.userId
 			};
 			this.iframeNode.contentWindow.postMessage(JSON.stringify(data), _getOriginOfUrl(this.linkedContentUrl));
 		}

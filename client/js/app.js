@@ -37,6 +37,7 @@ window.postMessageHandler = function(p_event) {
 	window.userId = message.userId;
 	window.courseId = message.courseId;
 	window.menuItemId = message.menuItemId;
+	window.accessToken = message.accessToken;
 
 	window.appIsReady();
 	
