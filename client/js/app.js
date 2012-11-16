@@ -67,6 +67,19 @@ var App = function() {
 			});
 		};
 
+		var getFormattedTime = function(seconds) {
+			var minutes = Math.floor(seconds/60);
+			if (minutes < 10) {
+				minutes = "0" + minutes;
+			}
+
+			var seconds = Math.floor(seconds%60);
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+			return minutes + ":" + seconds;
+		}
+
 
 
 //		$.get("/videos/" + videoId + "/royale", function(data){
@@ -143,6 +156,13 @@ var App = function() {
 				// play the video right away
 				popcorn.play();
 			}
+
+
+			$("#addCommentButton").click(function() {
+
+				$("#addCommentTime").html("@ " + getFormattedTime(popcorn.currentTime()));
+				$("#addCommentForm").slideToggle();
+			});
 
 //		});
 	};

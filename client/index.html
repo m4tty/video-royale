@@ -31,14 +31,13 @@
 
 				<div class="span5">
 					<div class="comments-container">
-
 						<div class="centered-div">
-							<a class="btn" href="javascript:void(0);"><i class="icon-bullhorn"></i> Add Comment</a>
+							<a id="addCommentButton" class="" style="width:100%; display:block;" href="javascript:void(0);"><i class="icon-bullhorn"></i></a>
 						</div>
 
-					    <form>
-						    <div class="input-prepend input-append">
-						    	<span class="add-on">@ 00:12</span>
+					    <form id="addCommentForm" style="width:100%; padding-top:5px; padding-bottom:5px" style="display:none;">
+						    <div class="input-prepend input-append" style="text-align:center;">
+						    	<span id="addCommentTime" class="add-on">@ 00:12</span>
 						    	<input class="span3" id="prependedInput" type="text" placeholder="Comment...">
 						    	<a class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
 						    </div>
