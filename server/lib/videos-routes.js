@@ -138,7 +138,7 @@ var populateDB = function() {
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 20000,
-						    	"contentHtml": "Blob Jumping is an outdoor water activity in which a participant sits on the end of a partially inflated air bag (known as a water trampoline or blob) and is then launched into the water after another participant jumps onto the air bag from a platform on the opposite side. The activity is popular at summer camps in North America. Various tricks may be performed while the participant is in the air. The air bag is approximately 10 meters long (33 feet) by 2 meters wide (6 feet). The recommended height for the tower is 15 feet above the water surface, or 10 feet above the air bag."
+						    	"contentHtml": "<span style='font-size: small;'>Blob Jumping is an outdoor water activity in which a participant sits on the end of a partially inflated air bag (known as a water trampoline or blob) and is then launched into the water after another participant jumps onto the air bag from a platform on the opposite side. The activity is popular at summer camps in North America. Various tricks may be performed while the participant is in the air. The air bag is approximately 10 meters long (33 feet) by 2 meters wide (6 feet). The recommended height for the tower is 15 feet above the water surface, or 10 feet above the air bag.</span>"
 						    },
 						    {
 						    	"videoId": items[i]._id,
@@ -173,6 +173,26 @@ var populateDB = function() {
 							db.collection('contentFrames', function(err, collection) {
 						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
 						    });
+							//
+							
+						    actions = [
+						    {
+								startTime: 1000,
+								endTime: 16000,
+								action: "skip",
+								skipToTime: 16000
+							},
+							{
+								startTime: 91000,
+								endTime: 92000,
+								action: "pause"
+							}
+							]
+							db.collection('actions', function(err, collection) {
+						        collection.insert(actions, {safe:true}, function(err, result) {});
+						    });
+
+
 
 		        		}
 
