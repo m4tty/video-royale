@@ -101,7 +101,7 @@ var App = function() {
 			}
 
 			//Load the notes into the UI
-			var noteMgr = new NoteMgr(data.notes, noteDivId, noteSelectedCallback, noteAddedCallback
+			var noteMgr = new NoteMgr(data.notes, "notes", noteSelectedCallback, noteAddedCallback);
 
 
 			if(data.video.autoStart) {
