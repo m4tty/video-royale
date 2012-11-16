@@ -91,6 +91,10 @@
     box-shadow: 0px 0px 6px #B2B2B2;
     margin: 0px;
     padding: 10px;
+	transition: background-color 1s;
+	-moz-transition: background-color 1s; /* Firefox 4 */
+	-webkit-transition: background-color 1s; /* Safari and Chrome */
+	-o-transition: background-color 1s; /* Opera */
 }
 
 
@@ -100,6 +104,10 @@
     box-shadow: 0px 0px 6px #B2B2B2;
     margin: 0px;
     padding: 10px;
+	transition: background-color 1s;
+	-moz-transition: background-color 1s; /* Firefox 4 */
+	-webkit-transition: background-color 1s; /* Safari and Chrome */
+	-o-transition: background-color 1s; /* Opera */
 }
 
 .thumbnails {
