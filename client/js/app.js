@@ -12,8 +12,14 @@ var App = function() {
 				_id: "50a5736b4af16cb849000004"
 			},
 			actions: [{
-				time: 3000,
+				startTime: 3000,
+				endTime: 3100,
 				action: "pause"
+			},{
+				startTime: 20000,
+				endTime: 22000,
+				action: "rate",
+				rate: 0.2
 			}],
 			captions: [{
 				startTime: 13000,
@@ -153,13 +159,26 @@ var App = function() {
 				var action = data.actions[i];
 				if(action.action === "pause") {
 					popcorn.code({
-						start: (action.time / 1000),
-						end: (action.time / 1000) + 1,
+						start: (action.startTime / 1000),
+						end: (action.endTime / 1000),
 						onStart: function(options) {
 							popcorn.pause();
 						}
 					});
 				}
+				else if(action.action === "rate") {
+					popcorn.code({
+						start: (action.startTime / 1000),
+						end: (action.endTime / 1000) + 1,
+						onStart: function(options) {
+							popcorn.playbackRate(action.rate);
+						},
+						onEnd: function(options) {
+							popcorn.playbackRate(1);
+						},
+					});
+				}
+
 			}
 
 			//// Captions
