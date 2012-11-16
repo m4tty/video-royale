@@ -7031,7 +7031,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 	},
 
 	postCreate: function () {
-		this.menuItemId = this.digitalvellum.menuItemApi.getSelectedPrimaryNavigationMenuItem();
+		this.menuItemId = this.digitalVellum.menuItemApi.getSelectedPrimaryNavigationMenuItem().id;
 		console.log(this.menuItemId);
 
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
