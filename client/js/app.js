@@ -97,9 +97,9 @@ var App = function() {
 			popcorn.currentTime(contentFrame.startTime / 1000);
 		};
 
-		// var noteSelectedCallback = function(note) {
-		// 	popcorn.currentTime(note.startTime / 1000);
-		// };
+		var noteSelectedCallback = function(note) {
+			popcorn.currentTime(note.startTime / 1000);
+		};
 
 		// var noteAddedCallback = function(note) {
 		// 	popcorn.code({
@@ -197,6 +197,8 @@ var App = function() {
 			//// Notes
 			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
 
+			//Load the notes into the UI
+			
 			//Load all of the notes into popcorn
 			for(var i=0; i<data.notes.length; i++) {
 				var note = data.notes[i];
@@ -225,11 +227,21 @@ var App = function() {
 							noteMgr.unhighlight(note);
 						}
 					});
+
+					
+
 				})(note, nextNote);
 			}
 
-			//Load the notes into the UI
-			var noteMgr = new NoteMgr(data.video, data.notes, "notes");
+			var noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback);
+
+			for(var i=0; i<data.notes.length; i++) {
+
+				var note = data.notes[i];
+				(function(note)  {
+					noteMgr.bindClick(note);
+				})(note);
+			}
 
 			if(data.video.autoStart) {
 				// play the video right away

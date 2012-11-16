@@ -2,7 +2,6 @@
 var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedCallback) {
 	
 	var getFormattedTime = function(seconds) {
-		console.log(seconds);
 		var minutes = Math.floor(seconds/60);
 		if (minutes < 10) {
 			minutes = "0" + minutes;
@@ -28,6 +27,12 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 		templStr = _.template($("#notesTemplate").html(), notes[i]);
 		notesContainer.prepend(templStr);
 	}
+
+	this.bindClick = function(note) {
+		$("#" + note._id).click(function(){
+			noteSelectedCallback(note);
+		});
+	};
 
 	this.highlight = function(note) {
 		$("#" + note._id).attr('class', 'note-bubble-highlighted');
