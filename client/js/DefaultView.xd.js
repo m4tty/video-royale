@@ -7068,6 +7068,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			if ("console" in window) console.log("Error parsing message: " + message);
 			message = {};
 		}
+		if ("console" in window) console.log("message", message);
 		if (message.ready) {
 			var data = {
 				accessToken: this.accessToken,
