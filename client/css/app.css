@@ -9,6 +9,12 @@
 	padding: 10px;
 }
 
+.notes-container {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+}
+
 .bubble {
     background-color: #F2F2F2;
     border-radius: 5px;
