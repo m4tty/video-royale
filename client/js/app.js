@@ -1,21 +1,26 @@
 var App = function() {
+	var popcorn;
 
 	this.initialize = function(videoId) {
 		var data = {
 			video: {
 				name: "test2",
 				duration: 113000,
-				url: "http://www.808.dk/pics/video/gizmo.mp4",
-				//url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+				//url: "http://www.808.dk/pics/video/gizmo.mp4",
+				url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
 				autoStart: true,
 				_id: "50a5736b4af16cb849000004"
 			},
+			actions: [{
+				time: 3000,
+				action: "pause"
+			}],
 			contentFrames: [{
 				startTime: 50,
 				contentHtml: "This is a bear."
 			},{
 				startTime: 3000,
-				contentHtml: "He is looking for food."
+				contentHtml: "Is he looking for food? <br/> <a href='javascript:videoroyale.navigate(6000);'>Yes</a> or <a href='javascript:videoroyale.navigate(9000);'>No</a>"
 			},{
 				startTime: 6000,
 				contentHtml: "But since he is lazy,"
@@ -56,6 +61,8 @@ var App = function() {
 				}
 			]
 		}
+
+
 
 		var contentFrameSelectedCallback = function(contentFrame, index) {
 			popcorn.currentTime(contentFrame.startTime / 1000);
@@ -99,7 +106,24 @@ var App = function() {
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
 
 			// Create a popcorn instance
-			var popcorn = Popcorn("#video");
+			popcorn = Popcorn("#video");
+
+			//// Actions
+
+			//Load all of the actions into popcorn
+			for(var i=0; i<data.actions.length; i++) {
+				var action = data.actions[i];
+				if(action.action === "pause") {
+					popcorn.code({
+						start: (action.time / 1000),
+						end: (action.time / 1000) + 1,
+						onStart: function(options) {
+							popcorn.pause();
+						}
+					});
+				}
+			}
+
 
 			//// Content Frames
 
@@ -110,7 +134,7 @@ var App = function() {
 				(function(index) {
 					popcorn.code({
 						start: (contentFrame.startTime / 1000),
-						end: 10,
+						end: (contentFrame.startTime / 1000) + 1,
 						onStart: function(options) {
 							contentFrameMgr.show(index);
 						}
@@ -179,4 +203,7 @@ var App = function() {
 //		});
 	};
 
+	this.navigate = function(milliseconds) {
+		popcorn.currentTime(milliseconds / 1000).play();
+	};
 };
