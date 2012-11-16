@@ -31,7 +31,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 						userId: meData.me.id,
 						videoId: videoId,
 						userFullName: meData.me.firstName + " " + meData.me.lastName,
-						avatarUrl: "../affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
+						avatarUrl: "../Affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
 					};
 				$.ajax({
 					type: "POST",
@@ -40,7 +40,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 					dataType: "json",
 					success: function(data) {
 						newComment._id = data._id;
-						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
+						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.affinityToken});
 						if (lastDisplayedCommentId) {
 							$("#" + lastDisplayedCommentId).before(templStr);
 						} else {

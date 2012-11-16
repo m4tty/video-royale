@@ -64,10 +64,10 @@
 				</div>
 
 			    <form id="addNoteForm" style="display:none;">
-				    <div class="input-prepend input-append">
+				    <div class="input-prepend input-append" style="text-align:center;">
 				    	<span class="add-on">@ 00:12</span>
 				    	<input class="span3" id="prependedInput" type="text" placeholder="Note...">
-				    	<a class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
+				    	<a id="createNoteButton" class="btn" href="javascript:void(0);"><i class="icon-plus"></i></a>
 				    </div>
 				</form>
 
@@ -126,22 +126,49 @@
 		var videoroyale;
 		window.appIsReady = function() {
 			console.log("APP IS READY");
-			$(function(){
 
+			// HACK
+			//window.affinityToken = "berlin_4ea87b375ee52e5525980107:1353096981988:d9595cac5e48c5e6f9fa42b129e73c7f";
+			$(function(){
+				
 				$.ajax({
 					type: "GET",
-					url: "../phapi/windmilltoken",
+					url: "../phapi/me/affinityAssertion",
 					dataType: "json",
 					headers: {
 						"X-Authorization": "Access_Token access_token=" + window.accessToken
 					},
-					success: function(data) {
-						console.log(data);
-						window.accessToken = data.windmill_token.access_token;
-						videoroyale = new App();
-						videoroyale.initialize(window.videoId);
+					success: function(assertion) {
+						var ass = assertion.affinityAssertion.assertion;
+						$.ajax({
+							type: "GET",
+							url: "../Affinity/v1/session?Authorization=" + ass,
+							dataType: "json",
+							success: function(affToken) {
+								var ass = assertion.affinityAssertion.assertion;
+								window.affinityToken = affToken.affinityToken;
+								
+								$.ajax({
+									type: "GET",
+									url: "../phapi/windmilltoken",
+									dataType: "json",
+									headers: {
+										"X-Authorization": "Access_Token access_token=" + window.accessToken
+									},
+									success: function(data) {
+										console.log(data);
+										window.accessToken = data.windmill_token.access_token;
+										videoroyale = new App();
+										videoroyale.initialize(window.videoId);
+									}
+								});
+								
+
+							}
+						});
 					}
 				});
+				
 				
 	      	});
 		};
