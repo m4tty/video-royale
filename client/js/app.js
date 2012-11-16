@@ -42,7 +42,7 @@ window.postMessageHandler = function(p_event) {
 	window.appIsReady();
 	
 };
-
+/*
 window.onload = function() {
 	if (window.usePostMessage) {
 		if (window.addEventListener) {
@@ -59,7 +59,7 @@ window.onload = function() {
 		return;
 	}	
 };
-
+*/
 var _getOriginOfUrl = function(p_url) {
 	// "http://" or "https://"
 	var protocol = p_url.replace(/([a-zA-Z0-9]*?:\/\/).*?(\/.*|$)/, "$1").toLowerCase();
@@ -102,13 +102,13 @@ var App = function() {
 	var popcorn;
 
 	this.initialize = function(videoId) {
-		var data1 = {
+		var data = {
 			video: {
 				name: "test2",
 				duration: 113000,
 				//url: "http://www.808.dk/pics/video/gizmo.mp4",
 				url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
-				autoStart: true,
+				autoStart: false,
 				_id: "50a5736b4af16cb849000004"
 			},
 			actions: [{
@@ -147,6 +147,27 @@ var App = function() {
 			},{
 				startTime: 9000,
 				contentHtml: "he is not catching much."
+			},{
+				startTime: 10000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 11000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 12000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 13000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 14000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 15000,
+				contentHtml: "he is not catching much."
+			},{
+				startTime: 16000,
+				contentHtml: "he is not catching much."
 			}],
 			notes: [ {
 		      "videoId": "50a5816390c1dc3126000002",
@@ -168,27 +189,6 @@ var App = function() {
 		      "noteText": "blah blah hooray",
 		      "userId": 12345,
 		      "_id": "50a5816390c1dc3126000004"
-		    },
-			{
-		      "videoId": "50a5816390c1dc3126000002",
-		      "startTime": 8956,
-		      "noteText": "blah blah hooray",
-		      "userId": 12345,
-		      "_id": "50a5816390c1dc3126000006"
-		    },
-			{
-		      "videoId": "50a5816390c1dc3126000002",
-		      "startTime": 10956,
-		      "noteText": "blah blah hooray",
-		      "userId": 12345,
-		      "_id": "50a5816390c1dc3126000007"
-		    },
-			{
-		      "videoId": "50a5816390c1dc3126000002",
-		      "startTime": 11980,
-		      "noteText": "blah blah hooray",
-		      "userId": 12345,
-		      "_id": "50a5816390c1dc3126000008"
 		    }
 		    ],
 			comments: [
@@ -249,7 +249,7 @@ var App = function() {
 
 
 
-			$.get("../videos/" + videoId + "/royale", function(data){
+//			$.get("../videos/" + videoId + "/royale", function(data){
 	
 			//Set the video source
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
@@ -422,7 +422,7 @@ var App = function() {
 				$("#addNoteForm").slideDown();
 			});
 
-		});
+//		});
 	};
 
 	this.navigate = function(milliseconds) {
