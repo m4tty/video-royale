@@ -15,6 +15,15 @@ var App = function() {
 				time: 3000,
 				action: "pause"
 			}],
+			captions: [{
+				startTime: 13000,
+				endTime: 16000,
+				text: "This is a caption"
+			}, {
+				startTime: 16000,
+				endTime: 19000,
+				text: "Yet another caption"
+			}],
 			contentFrames: [{
 				startTime: 50,
 				contentHtml: "This is a bear."
@@ -151,6 +160,25 @@ var App = function() {
 						}
 					});
 				}
+			}
+
+			//// Captions
+			var captionMgr = new CaptionMgr("caption");
+
+			//Load all of the actions into popcorn
+			for(var i=0; i<data.captions.length; i++) {
+				(function(caption) {
+					popcorn.code({
+						start: (caption.startTime / 1000),
+						end: (caption.endTime / 1000),
+						onStart: function(options) {
+							captionMgr.show(caption);
+						},
+						onEnd: function(options) {
+							captionMgr.hide();
+						}
+					});
+				}(data.captions[i]));
 			}
 
 
