@@ -139,13 +139,13 @@ var populateDB = function() {
 			        		contentFrames = [
 						    {
 						    	"videoId": items[i]._id,
-						        "startTime": 20000,
-						    	"contentHtml": "<p class='MsoNormal' style='margin: 0cm 0cm 0pt; text-align: justify;'><span style='font-size: small;'>Blob Jumping is an outdoor water activity in which a participant sits on the end of a partially inflated air bag (known as a water trampoline or blob) and is then launched into the water after another participant jumps onto the air bag from a platform on the opposite side. The activity is popular at summer camps in North America. Various tricks may be performed while the participant is in the air. The air bag is approximately 10 meters long (33 feet) by 2 meters wide (6 feet). The recommended height for the tower is 15 feet above the water surface, or 10 feet above the air bag.</span></p>"
+						        "startTime": 2000,
+						    	"contentHtml": "Blob Jumping is an outdoor water activity in which a participant sits on the end of a partially inflated air bag (known as a water trampoline or blob) and is then launched into the water after another participant jumps onto the air bag from a platform on the opposite side. The activity is popular at summer camps in North America. Various tricks may be performed while the participant is in the air. The air bag is approximately 10 meters long (33 feet) by 2 meters wide (6 feet). The recommended height for the tower is 15 feet above the water surface, or 10 feet above the air bag."
 						    },
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 25000,
-						    	"contentHtml": "<p class='MsoNormal' style='margin: 0cm 0cm 0pt; text-align: justify;'><span style='font-size: small;'>Distance, in order to calculate the velocity of a falling object.</span></p> <image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpingPlatformHeight.jpg'/>"
+						    	"contentHtml": "Distance, in order to calculate the velocity of a falling object. <image height='225' width='144' src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpingPlatformHeight.jpg'/>"
 						    },						    
 						    {
 						    	"videoId": items[i]._id,
@@ -155,7 +155,7 @@ var populateDB = function() {
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 38000,
-						    	"contentHtml": "<p class='MsoNormal' style='margin: 0cm 0cm 0pt; text-align: justify;'><span style='font-size: small;'>To calculate the work energy principle, we need the positions of the objects at rest. </span></p><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpOffandLaunchHeights.jpg'></image>"
+						    	"contentHtml": "To calculate the work energy principle, we need the positions of the objects at rest. <image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpOffandLaunchHeights.jpg'></image>"
 			   				 },{
 						    	"videoId": items[i]._id,
 						        "startTime": 45000,
@@ -213,71 +213,94 @@ var populateDB = function() {
 			        		contentFrames = [
 			        		{
 						    	"videoId": items[i]._id,
-						        "startTime": 25000,
+						        "startTime": 1000,
 						    	"contentHtml": "Video Royale: Enhancing video, by connecting authored content, comments, and student notes."
 						    },
-						    {
+			        		{
 						    	"videoId": items[i]._id,
-						        "startTime": 20000,
-						    	"contentHtml": "<p class='MsoNormal' style='margin: 0cm 0cm 0pt; text-align: justify;'><span style='font-size: small;'></span></p>"
+						        "startTime": 5000,
+						    	"contentHtml": "Tim Schwecke - Matt Self - Mac Angel"
 						    },
 						    {
 						    	"videoId": items[i]._id,
-						        "startTime": 25000,
-						    	"contentHtml": ""
+						        "startTime": 21000,
+						    	"contentHtml": "Comments are soo awesome"
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 28000,
+						    	"contentHtml": "Notes are just text that students can add that are visible to just them.  These could be used for bookmarking, note-taking, etc, and will allow for quickly going back to a point in the video.  This is especially handy during long videos."
 						    },						    
 						    {
 						    	"videoId": items[i]._id,
-						        "startTime": 30000,
-						    	"contentHtml": "Average velocity v of a falling object that has travelled distance d (averaged over time):<br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/fallingVelocity.png'/>"
+						        "startTime": 37000,
+						    	"contentHtml": "Content Authors can wire up content to any point in time in the video.  This will empower Content Authors to create engaging learning experiences by working with the video content."
 			   				 },
-						    {
+						   	{
 						    	"videoId": items[i]._id,
-						        "startTime": 38000,
-						    	"contentHtml": "To calculate the work energy principle, we need the positions of the objects at rest. <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpOffandLaunchHeights.jpg'></image>"
-			   				 },{
-						    	"videoId": items[i]._id,
-						        "startTime": 45000,
-						    	"contentHtml": "work energy principle <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/workEnergyPrinciple-latex.jpg'></image>"
-			   				 },{
-						    	"videoId": items[i]._id,
-						        "startTime": 82000,
-						    	"contentHtml": "Vertical position vs time <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/verticalPosVsTime.jpg'></image>"
-			   				 },
-			   				 {
-						    	"videoId": items[i]._id,
-						        "startTime": 90000,
-						    	"contentHtml": "Final calculation <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/InputsCalculation-latex.jpg'></image>"
-			   				 }
-			   				 ];
+						        "startTime": 47000,
+						    	"contentHtml": "Thanks! Let's go see an example!"
+			   				 }];
 
 							db.collection('contentFrames', function(err, collection) {
 						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
-						    });
-							//
-							
-						    actions = [
-						    {
-								startTime: 1000,
-								endTime: 16000,
-								action: "skip",
-								skipToTime: 16000
-							},
-							{
-								startTime: 91000,
-								endTime: 92000,
-								action: "pause"
-							}
-							]
-							db.collection('actions', function(err, collection) {
-						        collection.insert(actions, {safe:true}, function(err, result) {});
 						    });
 
 
 
 		        		}
 					    
+				if (items[i].name == 'Outro') {
+		        			console.log('inserting outro data');
+		        			var bsonId = new BSON.ObjectID('50a67ed6df92132e38000003');
+		     				//16 seconds start... for some material to fill intro
+							// 30 seconds starts the blob jumping
+							// 30 seconds falling velocity
+							// 40 seconds guy at peek height
+							// 46 seconds ends the best view of jump.  skip to 1.18.
+							// 1.18 overlay
+							// 1.22 time lapse pictures of falling and launch
+							// 1.30 ends time lapse and good material. stop/pause.
+			        		contentFrames = [
+			        		{
+						    	"videoId": items[i]._id,
+						        "startTime": 1000,
+						    	"contentHtml": "Thanks again for checking out our Enriched Video Hackathon project."
+						    },
+			        		{
+						    	"videoId": items[i]._id,
+						        "startTime": 8000,
+						    	"contentHtml": "<a href='http://nginx.org/'>Nginx</a> for static content (.js,.html,.css) and video streaming.  "
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 16000,
+						    	"contentHtml": "<a href='http://nodejs.org/'>Node.js</a> and <a href='http://mongodb.org/'>MongoDB</a> for our server-side stack.  With REST services!"
+						    },
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 21000,
+						    	"contentHtml": "Popcorn.js and Reveal.js helped power the UI.  Jquery too."
+						    },						    
+						    {
+						    	"videoId": items[i]._id,
+						        "startTime": 25000,
+						    	"contentHtml": "Oh Yeah... and we are in the CLOUD.  That is right!  On PROD.  In the CLOUD.  Unicorns!"
+			   				 },
+						   	{
+						    	"videoId": items[i]._id,
+						        "startTime": 47000,
+						    	"contentHtml": "Thanks! Vote for Video Royale."
+			   				 }
+			   				 ];
 
+							db.collection('contentFrames', function(err, collection) {
+						        collection.insert(contentFrames, {safe:true}, function(err, result) {});
+						    });
+
+
+
+		        		}
 
 				    // var notes = [
 					   //  {
