@@ -126,7 +126,11 @@
 		var videoroyale;
 		window.appIsReady = function() {
 			console.log("APP IS READY");
+
+			// HACK
+			window.affinityToken = "berlin_4ea87b375ee52e5525980107:1353096981988:d9595cac5e48c5e6f9fa42b129e73c7f";
 			$(function(){
+				/*
 				$.ajax({
 					type: "GET",
 					url: "../phapi/me/affinityAssertion",
@@ -143,7 +147,7 @@
 							success: function(affToken) {
 								var ass = assertion.affinityAssertion.assertion;
 								window.affinityToken = affToken.affinityToken;
-
+								*/
 								$.ajax({
 									type: "GET",
 									url: "../phapi/windmilltoken",
@@ -158,12 +162,12 @@
 										videoroyale.initialize(window.videoId);
 									}
 								});
+								/*
 
-								
 							}
 						});
 					}
-				});
+				});*/
 				
 				
 	      	});
