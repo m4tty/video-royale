@@ -32,7 +32,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId) {
 						userId: meData.me.id,
 						videoId: videoId,
 						userFullName: meData.me.firstName + " " + meData.me.lastName,
-						avatarUrl: "../affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName;
+						avatarUrl: "../affinity/v1/avatar/" + meData.me.clientString + "_" + meData.me.userName
 					},
 					dataType: "json",
 					success: function(data) {
