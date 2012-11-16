@@ -60,7 +60,7 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 						} else {
 							$("#" + currentlyActiveNote._id).before(templStr);
 						}
-						
+						newNote.timeStamp = getFormattedTime(newNote.startTime/1000);
 						notesById[newNote._id] = newNote;
 
 						$("#" + newNote._id).attr('class', 'note-bubble-highlighted');
