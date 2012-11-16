@@ -43,7 +43,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 						templStr = _.template($("#commentsTemplate").html(), {comment: newComment, token: window.accessToken});
 						$("#" + lastDisplayedCommentId).before(templStr);
 						commentsById[newComment._id] = newComment;
-						addCommentCallback(newComment);
+						commentAddedCallback(newComment);
 					}
 				});
 			}
