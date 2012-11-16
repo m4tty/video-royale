@@ -34,7 +34,7 @@ window.postMessageHandler = function(p_event) {
 		message = {};
 	}
 	console.log(message);
-	window.userId = message.userId;
+	window.videoId = message.videoId;
 	window.courseId = message.courseId;
 	window.menuItemId = message.menuItemId;
 	window.accessToken = message.accessToken;
@@ -221,6 +221,40 @@ var App = function() {
 			popcorn.currentTime(note.startTime / 1000);
 		};
 
+		var commentsMgr;
+		var commentAddedCallback = function(comment) {
+			popcorn.code({
+				start: (comment.startTime / 1000),
+				end: (comment.startTime / 1000) + 10,
+				onStart: function(options) {
+					commentsMgr.show(comment._id);
+				},
+				onEnd: function(options) {
+					commentsMgr.hide(comment._id);
+				}
+			});
+		};
+
+		var noteMgr;
+		var noteAddedCallback = function(note, nextNote) {
+			var endTime = null;
+			if (nextNote) {
+				endTime = (note.startTime / 1000) + (nextNote.startTime / 1000 - note.startTime / 1000);
+			} else {
+				endTime = (note.startTime / 1000) + 10;
+			}
+			popcorn.code({
+				start: (note.startTime / 1000),
+				end: endTime,
+				onStart: function(options) {
+					noteMgr.highlight(note);
+				},
+				onEnd: function(options) {
+					noteMgr.unhighlight(note);
+				}
+			});
+		};
+
 		// var noteAddedCallback = function(note) {
 		// 	popcorn.code({
 		// 		start: (note.startTime / 1000),
@@ -353,7 +387,7 @@ var App = function() {
 			var contentFrameMgr = new ContentFrameMgr(data.contentFrames, "contentFrameReveal", "contentFrameThumbnailReveal", contentFrameSelectedCallback);
 			contentFrameMgr.show(0);
 
-			var commentsMgr = new CommentsMgr(data.comments, "comments", videoId);
+			commentsMgr = new CommentsMgr(data.comments, "comments", videoId, commentAddedCallback);
 
 			//// Notes
 			data.notes.sort(function(a,b) { return a.startTime - b.startTime } );
@@ -394,7 +428,7 @@ var App = function() {
 				})(note, nextNote);
 			}
 
-			var noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback);
+			noteMgr = new NoteMgr(data.video, data.notes, "notes", noteSelectedCallback, noteAddedCallback);
 
 			for(var i=0; i<data.notes.length; i++) {
 

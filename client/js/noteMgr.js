@@ -17,8 +17,10 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 
 	var notesById = {}, tempStr;
 	var notesContainer = $("#" + noteDivId);
+	
 
 	notes.sort(function(a,b) { return b.startTime - a.startTime } );
+	var currentlyActiveNote = notes[0];
 
 	for (var i =0; i < notes.length; i++) {
 		notesById[notes[i]._id] = notes[i];
@@ -28,6 +30,45 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 		notesContainer.prepend(templStr);
 	}
 
+	$("#createNoteButton").click(function() {
+		var noteText = $("#noteInput").val();
+		var startTime = $("#addNoteTime").attr("data-time");
+		$.ajax({
+			type: "GET",
+			url: "../wsod/me",
+			dataType: "json",
+			headers: {
+				"X-Authorization": "Access_Token access_token=" + window.accessToken
+			},
+			success: function(meData) {
+				var newNote = {
+						noteText: noteText,
+						startTime: startTime,
+						userId: meData.me.id,
+						videoId: videoId
+					};
+				$.ajax({
+					type: "POST",
+					url: "../videos/" + videoId + "/notes",
+					data: newNote,
+					dataType: "json",
+					success: function(data) {
+						newNote._id = new Date().getTime();
+						templStr = _.template($("#notesTemplate").html(), newNote);
+						if (currentlyActiveNote.startTime < newNote.startTime) {
+							$("#" + currentlyActiveNote._id).after(templStr);
+						} else {
+							$("#" + currentlyActiveNote._id).before(templStr);
+						}
+						
+						notesById[newNote._id] = newNote;
+						noteAddedCallback(newNote, nextNote);
+					}
+				});
+			}
+		});
+	});
+
 	this.bindClick = function(note) {
 		$("#" + note._id).click(function(){
 			noteSelectedCallback(note);
@@ -35,6 +76,7 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 	};
 
 	this.highlight = function(note) {
+		currentlyActiveNote = note;
 		$("#" + note._id).attr('class', 'note-bubble-highlighted');
 	};
 
