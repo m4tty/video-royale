@@ -42,7 +42,7 @@ window.postMessageHandler = function(p_event) {
 	window.appIsReady();
 	
 };
-/*
+
 window.onload = function() {
 	if (window.usePostMessage) {
 		if (window.addEventListener) {
@@ -59,7 +59,7 @@ window.onload = function() {
 		return;
 	}	
 };
-*/
+
 var _getOriginOfUrl = function(p_url) {
 	// "http://" or "https://"
 	var protocol = p_url.replace(/([a-zA-Z0-9]*?:\/\/).*?(\/.*|$)/, "$1").toLowerCase();
@@ -283,7 +283,7 @@ var App = function() {
 
 
 
-//			$.get("../videos/" + videoId + "/royale", function(data){
+			$.get("../videos/" + videoId + "/royale", function(data){
 	
 			//Set the video source
 			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
@@ -456,7 +456,7 @@ var App = function() {
 				$("#addNoteForm").slideDown();
 			});
 
-//		});
+		});
 	};
 
 	this.navigate = function(milliseconds) {
