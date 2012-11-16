@@ -148,7 +148,7 @@
 								var ass = assertion.affinityAssertion.assertion;
 								window.affinityToken = affToken.affinityToken;
 								
-								$.ajax({
+								/*$.ajax({
 									type: "GET",
 									url: "../phapi/windmilltoken",
 									dataType: "json",
@@ -157,11 +157,11 @@
 									},
 									success: function(data) {
 										console.log(data);
-										window.accessToken = data.windmill_token.access_token;
+										window.accessToken = data.windmill_token.access_token;*/
 										videoroyale = new App();
 										videoroyale.initialize(window.videoId);
-									}
-								});
+								//	}
+								//});
 								
 
 							}
