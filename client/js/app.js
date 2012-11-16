@@ -295,38 +295,38 @@ var App = function() {
 
 			//Load all of the actions into popcorn
 			for(var i=0; i<data.actions.length; i++) {
-				var action = data.actions[i];
-				if(action.action === "pause") {
-					popcorn.code({
-						start: (action.startTime / 1000),
-						end: (action.endTime / 1000),
-						onStart: function(options) {
-							popcorn.pause();
-						}
-					});
-				}
-				else if(action.action === "rate") {
-					popcorn.code({
-						start: (action.startTime / 1000),
-						end: (action.endTime / 1000),
-						onStart: function(options) {
-							popcorn.playbackRate(action.rate);
-						},
-						onEnd: function(options) {
-							popcorn.playbackRate(1);
-						}
-					});
-				}
-				else if(action.action === "skip") {
-					popcorn.code({
-						start: (action.startTime / 1000),
-						end: (action.endTime / 1000),
-						onStart: function(options) {
-							popcorn.currentTime(action.skipToTime / 1000);
-						}
-					});
-				}
-
+				(function(action) {
+					if(action.action === "pause") {
+						popcorn.code({
+							start: (action.startTime / 1000),
+							end: (action.endTime / 1000),
+							onStart: function(options) {
+								popcorn.pause();
+							}
+						});
+					}
+					else if(action.action === "rate") {
+						popcorn.code({
+							start: (action.startTime / 1000),
+							end: (action.endTime / 1000),
+							onStart: function(options) {
+								popcorn.playbackRate(action.rate);
+							},
+							onEnd: function(options) {
+								popcorn.playbackRate(1);
+							}
+						});
+					}
+					else if(action.action === "skip") {
+						popcorn.code({
+							start: (action.startTime / 1000),
+							end: (action.endTime / 1000),
+							onStart: function(options) {
+								popcorn.currentTime(action.skipToTime / 1000);
+							}
+						});
+					}
+				}(data.actions[i]));
 			}
 
 			//// Captions
