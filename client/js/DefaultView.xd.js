@@ -7031,7 +7031,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 	},
 
 	postCreate: function () {
-		this.menuItemId = this.menuItemApi.getSelectedPrimaryNavigationMenuItem();
+		this.menuItemId = this.digitalvellum.menuItemApi.getSelectedPrimaryNavigationMenuItem();
 		console.log(this.menuItemId);
 
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
@@ -7045,6 +7045,8 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		else if (window.attachEvent) {
 			window.attachEvent('onmessage', dojo.hitch(this, this.postMessageHandler));
 		}
+
+		this.inherited(arguments);
 	},
 
 	postMessageHandler: function(p_event) {

@@ -125,7 +125,7 @@ var App = function() {
 			var contentFrameMgr = new ContentFrameMgr(data.contentFrames, "contentFrameReveal", "contentFrameThumbnailReveal", contentFrameSelectedCallback);
 			contentFrameMgr.show(0);
 
-			var commentsMgr = new CommentsMgr(data.comments, "comments");
+			var commentsMgr = new CommentsMgr(data.comments, "comments", videoId);
 
 			//// Notes
 
@@ -157,9 +157,9 @@ var App = function() {
 
 
 			$("#addCommentButton").click(function() {
-
 				$("#addCommentTime").html("@ " + getFormattedTime(popcorn.currentTime()));
-				$("#addCommentForm").slideToggle();
+				$("#addCommentTime").attr("data-time" + Math.floor(popcorn.currentTime()) * 1000);
+				$("#addCommentForm").slideDown();
 			});
 
 //		});
