@@ -104,8 +104,8 @@
 	</script>
 
 	<script type="text/template" id="notesTemplate">
-		<div id="note" class="note">
-    		<div id="<%= _id %>" class="note-bubble">
+		<div id="<%= _id %>" class="note">
+    		<div class="note-bubble">
 	    		<div class="notetext"><a class="label" href="javascript:void(0);"><%= timeStamp %></a> <%= noteText %></div>
 	    	</div>
 	    </div>
@@ -142,7 +142,7 @@
 						console.log(data);
 						window.accessToken = data.windmill_token.access_token;
 						videoroyale = new App();
-						videoroyale.initialize("50a5816390c1dc3126000001");
+						videoroyale.initialize(window.videoId);
 					}
 				});
 				
