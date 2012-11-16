@@ -7057,7 +7057,10 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			var port = p_url.replace(/[a-zA-Z0-9]*?:\/\/.*?(:\d+)?($|\/.*)/, "$1").toLowerCase();
 			return protocol + domain + port;
 		};
-
+		if (p_event.origin !== _getOriginOfUrl(this.linkedContentUrl)) {
+			return;
+		}
+		console.log("EVENT", p_event);
 		var message;
 		try {
 			// parse the data of the message into an object
@@ -7068,6 +7071,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 			if ("console" in window) console.log("Error parsing message: " + message);
 			message = {};
 		}
+		if ("console" in window) console.log("message", message);
 		if (message.ready) {
 			var data = {
 				accessToken: this.accessToken,
