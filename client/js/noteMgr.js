@@ -82,11 +82,11 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 
 	this.highlight = function(note) {
 		currentlyActiveNote = note;
-		$("#" + note._id).attr('class', 'note-bubble-highlighted');
+		$("#" + note._id + " div").attr('class', 'note-bubble-highlighted');
 	};
 
 	this.unhighlight = function(note) {
-		$("#" + note._id).attr('class', 'note-bubble');
+		$("#" + note._id + " div").attr('class', 'note-bubble');
 	};
 
 };
