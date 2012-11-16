@@ -7031,12 +7031,11 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 	},
 
 	postCreate: function () {
-		this.menuItemId = this.menuItemApi.getSelectedPrimaryNavigationMenuItem();
-		console.log(this.menuItemId);
-
+		this.menuItemId = this.digitalVellum.menuItemApi.getSelectedPrimaryNavigationMenuItem().id;
+		
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
 		this.linkedContentUrl = "http://ec2-174-129-109-6.compute-1.amazonaws.com/client/index.html"
-		this.appFrame = dojo.byId("videoRoyale");
+		this.appFrame = document.getElementById("videoRoyale");
 		this.appFrame.attr("src", this.linkedContentUrl + "?origin=" + this.origin);
 		
 		if (window.addEventListener) {
@@ -7045,6 +7044,8 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		else if (window.attachEvent) {
 			window.attachEvent('onmessage', dojo.hitch(this, this.postMessageHandler));
 		}
+
+		this.inherited(arguments);
 	},
 
 	postMessageHandler: function(p_event) {
