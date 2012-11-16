@@ -130,11 +130,12 @@
 	background-color: black;
 	height: 30px;
 	width: 300px;
+	text-align: center;
+	padding-top: 8px;
 	opacity: 0;
 	transition: opacity .5s;
 	-moz-transition: opacity .5s; /* Firefox 4 */
 	-webkit-transition: opacity .5s; /* Safari and Chrome */
 	-o-transition: opacity .5s; /* Opera */
-	text-align: center;
 }
 
