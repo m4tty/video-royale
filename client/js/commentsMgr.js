@@ -9,7 +9,7 @@ var CommentsMgr = function(comments, commentsDivId, videoId, commentAddedCallbac
 
 	for (var i =0; i < comments.length; i++) {
 		commentsById[comments[i]._id] = comments[i];
-		templStr = _.template($("#commentsTemplate").html(), { comment: comments[i], token: window.accessToken });
+		templStr = _.template($("#commentsTemplate").html(), { comment: comments[i], token: window.affinityToken });
 		commentsContainer.prepend(templStr);
 		$("#" + comments[i]._id).hide();
 	}
