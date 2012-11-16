@@ -127,21 +127,44 @@
 		window.appIsReady = function() {
 			console.log("APP IS READY");
 			$(function(){
-
 				$.ajax({
 					type: "GET",
-					url: "../phapi/windmilltoken",
+					url: "../phapi/me/affinityAssertion",
 					dataType: "json",
 					headers: {
 						"X-Authorization": "Access_Token access_token=" + window.accessToken
 					},
-					success: function(data) {
-						console.log(data);
-						window.accessToken = data.windmill_token.access_token;
-						videoroyale = new App();
-						videoroyale.initialize(window.videoId);
+					success: function(assertion) {
+						var ass = assertion.affinityAssertion.assertion;
+						$.ajax({
+							type: "GET",
+							url: "../Affinity/v1/session?Authorization=" + ass,
+							dataType: "json",
+							success: function(affToken) {
+								var ass = assertion.affinityAssertion.assertion;
+								window.affinityToken = affToken.affinityToken;
+
+								$.ajax({
+									type: "GET",
+									url: "../phapi/windmilltoken",
+									dataType: "json",
+									headers: {
+										"X-Authorization": "Access_Token access_token=" + window.accessToken
+									},
+									success: function(data) {
+										console.log(data);
+										window.accessToken = data.windmill_token.access_token;
+										videoroyale = new App();
+										videoroyale.initialize(window.videoId);
+									}
+								});
+
+								
+							}
+						});
 					}
 				});
+				
 				
 	      	});
 		};
