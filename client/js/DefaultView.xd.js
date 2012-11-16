@@ -7026,7 +7026,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		// this.courseId
 		console.log("constructor!!");
 		// override
-		this.templateString = dojo.cache("videoroyale.ui", "templates/DefaultView.html", "<div class=\"\">\r\n\t<iframe dojoAttachPoint=\"iframeNode\" id=\"videoRoyale\" src=\"\" />\r\n</div>\r\n");
+		this.templateString = dojo.cache("videoroyale.ui", "templates/DefaultView.html", "<div style=\"width:100%;height:100%;\" class=\"\">\r\n\t<iframe dojoAttachPoint=\"iframeNode\" id=\"videoRoyale\" style=\"width:100%;height:100%;overflow:hidden;\"src=\"\" />\r\n</div>\r\n");
 		this.doLayout = false;
 	},
 
