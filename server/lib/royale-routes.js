@@ -74,6 +74,19 @@ exports.findById = function(req, res) {
 
 						        });
 						    });
+				    },
+		     		    function(callback){
+	 					db.collection('actions', function(err, collection) {
+						        collection.find({'videoId':new BSON.ObjectID(videoid)}).toArray(function(err, item) {
+									// if (err) {
+									// 	return err;
+									// }
+									console.log('actions', item);
+									royaleResult.actions = item;
+									callback(null, {'actions': item });
+
+						        });
+						    });
 				    }
 
 				], function(err, data) {
