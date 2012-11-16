@@ -54,13 +54,13 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 					dataType: "json",
 					success: function(data) {
 						newNote._id = data._id;
+						newNote.timeStamp = getFormattedTime(newNote.startTime/1000);
 						templStr = _.template($("#notesTemplate").html(), newNote);
 						if (currentlyActiveNote.startTime < newNote.startTime) {
 							$("#" + currentlyActiveNote._id).after(templStr);
 						} else {
 							$("#" + currentlyActiveNote._id).before(templStr);
 						}
-						
 						notesById[newNote._id] = newNote;
 
 						$("#" + newNote._id).attr('class', 'note-bubble-highlighted');

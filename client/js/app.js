@@ -446,13 +446,13 @@ var App = function() {
 
 			$("#addCommentButton").click(function() {
 				$("#addCommentTime").html("@ " + getFormattedTime(popcorn.currentTime()));
-				$("#addCommentTime").attr("data-time" + Math.floor(popcorn.currentTime()) * 1000);
+				$("#addCommentTime").attr("data-time", Math.floor(popcorn.currentTime()) * 1000);
 				$("#addCommentForm").slideDown();
 			});
 
 			$("#addNoteButton").click(function() {
 				$("#addNoteTime").html("@ " + getFormattedTime(popcorn.currentTime()));
-				$("#addNoteTime").attr("data-time" + Math.floor(popcorn.currentTime()) * 1000);
+				$("#addNoteTime").attr("data-time", Math.floor(popcorn.currentTime()) * 1000);
 				$("#addNoteForm").slideDown();
 			});
 
