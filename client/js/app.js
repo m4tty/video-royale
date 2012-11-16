@@ -21,9 +21,6 @@ var App = function() {
 			},{
 				startTime: 9000,
 				contentHtml: "he is not catching much."
-			},{
-				startTime: 11000,
-				contentHtml: "The End."
 			}],
 			notes: [ ],
 			comments: [ ]
@@ -53,8 +50,9 @@ var App = function() {
 
 
 //		$.get("/videos/" + videoId + "/royale", function(data){
-
-			$("#videoSrc").attr("src", data.video.url);
+	
+			//Set the video source
+			$('<source/>', {src: data.video.url, type: "video/mp4"}).appendTo("#video");
 
 			// Create a popcorn instance
 			var popcorn = Popcorn("#video");
