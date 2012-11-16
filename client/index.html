@@ -95,7 +95,7 @@
 
 	<script type="text/template" id="commentsTemplate">
 		<div id="<%= comment._id %>" class="comment">
-			<img src="<%= comment.avatarUrl %>?Authorization=<%= token.accessToken %>" class="img-rounded avatar"/>
+			<img src="<%= comment.avatarUrl %>?Authorization=<%= token %>" class="img-rounded avatar"/>
 			<div class="bubble">
 				<div class="bubbletext"><%= comment.commentText %></div>
 				<div id="<%= comment.userId %>" class="bubblesig">- <%= comment.userFullName %></div>
