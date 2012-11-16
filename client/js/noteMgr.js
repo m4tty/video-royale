@@ -56,7 +56,10 @@ var NoteMgr = function(video, notes, noteDivId, noteSelectedCallback, noteAddedC
 						newNote._id = data._id;
 						newNote.timeStamp = getFormattedTime(newNote.startTime/1000);
 						templStr = _.template($("#notesTemplate").html(), newNote);
-						if (currentlyActiveNote.startTime < newNote.startTime) {
+						if (!currentlyActiveNote) {
+							notesContainer.prepend(templStr);
+						}
+						else if (currentlyActiveNote.startTime < newNote.startTime) {
 							$("#" + currentlyActiveNote._id).after(templStr);
 						} else {
 							$("#" + currentlyActiveNote._id).before(templStr);
