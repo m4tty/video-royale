@@ -7034,7 +7034,7 @@ dojo.declare("videoroyale.DefaultView", [dijit.layout.ContentPane, dijit._Templa
 		this.menuItemId = this.digitalVellum.menuItemApi.getSelectedPrimaryNavigationMenuItem().id;
 
 		this.origin = window.location.protocol.toLowerCase() + "//" + window.location.host.toLowerCase();
-		this.linkedContentUrl = "http://ec2-174-129-109-6.compute-1.amazonaws.com/client/index.html"
+		this.linkedContentUrl = "http://videoroyale.schwecke.us/client/index.html"
 		//this.appFrame = document.getElementById("videoRoyale");
 		dojo.query(this.iframeNode).attr("src", this.linkedContentUrl + "?origin=" + this.origin);
 		//this.iframeNode.attr("src", this.linkedContentUrl + "?origin=" + this.origin);

@@ -107,7 +107,7 @@ var App = function() {
 				name: "test2",
 				duration: 113000,
 				//url: "http://www.808.dk/pics/video/gizmo.mp4",
-				url: "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+				url: "http://videoroyale.schwecke.us/av/blob_full.mp4",
 				autoStart: false,
 				_id: "50a5736b4af16cb849000004"
 			},

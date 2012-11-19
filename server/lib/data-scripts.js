@@ -38,7 +38,7 @@ var populateDB = function() {
 					    		"_id" : id,
 					    		"name": "Physics of the Blob Jump",
 					    		"duration": 113000,
-					    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/blob_full.mp4",
+					    		"url": "http://videoroyale.schwecke.us/av/blob_full.mp4",
 					    		"autoStart": false
 					    }];
 
@@ -60,7 +60,7 @@ var populateDB = function() {
 						    		"_id" : id,
 						    		"name": 'Intro',
 						    		"duration": 113000,
-						    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/Intro.m4v",
+						    		"url": "http://videoroyale.schwecke.us/av/Intro.m4v",
 						    		"autoStart": false
 						    }];
 
@@ -83,7 +83,7 @@ var populateDB = function() {
 						    		"_id" : id,
 						    		"name": 'Outro',
 						    		"duration": 113000,
-						    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/Outro.m4v",
+						    		"url": "http://videoroyale.schwecke.us/av/Outro.m4v",
 						    		"autoStart": false
 						    }];
 
@@ -106,7 +106,7 @@ var populateDB = function() {
 						    		"_id" : id,
 						    		"name": 'Adaptive',
 						    		"duration": 113000,
-						    		"url": "http://ec2-174-129-109-6.compute-1.amazonaws.com/av/Adaptive.m4v",
+						    		"url": "http://videoroyale.schwecke.us/av/Adaptive.m4v",
 						    		"autoStart": false
 						    }];
 
@@ -145,30 +145,30 @@ var populateDB = function() {
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 25000,
-						    	"contentHtml": "Distance, in order to calculate the velocity of a falling object. <image height='225' width='144' src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpingPlatformHeight.jpg'/>"
+						    	"contentHtml": "Distance, in order to calculate the velocity of a falling object. <image height='225' width='144' src='http://videoroyale.schwecke.us/images/jumpingPlatformHeight.jpg'/>"
 						    },						    
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 30000,
-						    	"contentHtml": "Average velocity v of a falling object that has travelled distance d (averaged over time):<br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/fallingVelocity.png'/>"
+						    	"contentHtml": "Average velocity v of a falling object that has travelled distance d (averaged over time):<br><image src='http://videoroyale.schwecke.us/images/fallingVelocity.png'/>"
 			   				 },
 						    {
 						    	"videoId": items[i]._id,
 						        "startTime": 38000,
-						    	"contentHtml": "To calculate the work energy principle, we need the positions of the objects at rest. <image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/jumpOffandLaunchHeights.jpg'></image>"
+						    	"contentHtml": "To calculate the work energy principle, we need the positions of the objects at rest. <image src='http://videoroyale.schwecke.us/images/jumpOffandLaunchHeights.jpg'></image>"
 			   				 },{
 						    	"videoId": items[i]._id,
 						        "startTime": 45000,
-						    	"contentHtml": "work energy principle <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/workEnergyPrinciple-latex.jpg'></image>"
+						    	"contentHtml": "work energy principle <br><image src='http://videoroyale.schwecke.us/images/workEnergyPrinciple-latex.jpg'></image>"
 			   				 },{
 						    	"videoId": items[i]._id,
 						        "startTime": 82000,
-						    	"contentHtml": "Vertical position vs time <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/verticalPosVsTime.jpg'></image>"
+						    	"contentHtml": "Vertical position vs time <br><image src='http://videoroyale.schwecke.us/images/verticalPosVsTime.jpg'></image>"
 			   				 },
 			   				 {
 						    	"videoId": items[i]._id,
 						        "startTime": 90000,
-						    	"contentHtml": "Final calculation <br><image src='http://ec2-174-129-109-6.compute-1.amazonaws.com/images/InputsCalculation-latex.jpg'></image>"
+						    	"contentHtml": "Final calculation <br><image src='http://videoroyale.schwecke.us/images/InputsCalculation-latex.jpg'></image>"
 			   				 }
 			   				 ];
 
