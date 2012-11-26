@@ -294,7 +294,6 @@ var App = function() {
 			//// Actions
 
 			//Load all of the actions into popcorn
-			var beginningVolume = 1;
 			for(var i=0; i<data.actions.length; i++) {
 				(function(action) {
 					if(action.action === "pause") {
@@ -332,27 +331,10 @@ var App = function() {
 							start: (action.startTime / 1000),
 							end: (action.endTime / 1000),
 							onStart: function(options) {
-								beginningVolume = popcorn.volume();
-								var interval = setInterval(function() {
-									var volume = popcorn.volume();
-									if(volume > 0) {
-										popcorn.volume(volume - .1);
-									}
-									else {
-										clearInterval(interval);
-									}
-								}, 100);
+								popcorn.mute();
 							},
 							onEnd: function(options) {
-								var interval = setInterval(function() {
-									var volume = popcorn.volume();
-									if(volume < beginningVolume) {
-										popcorn.volume(volume + .1);
-									}
-									else {
-										clearInterval(interval);
-									}
-								}, 100);
+								popcorn.unmute();
 							}
 
 						});
