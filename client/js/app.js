@@ -335,7 +335,7 @@ var App = function() {
 								beginningVolume = popcorn.volume();
 								var interval = setInterval(function() {
 									var volume = popcorn.volume();
-									if(volume <=0) {
+									if(volume > 0) {
 										popcorn.volume(volume - .1);
 									}
 									else {
@@ -346,7 +346,7 @@ var App = function() {
 							onEnd: function(options) {
 								var interval = setInterval(function() {
 									var volume = popcorn.volume();
-									if(volume <= beginningVolume) {
+									if(volume < beginningVolume) {
 										popcorn.volume(volume + .1);
 									}
 									else {
